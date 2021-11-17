@@ -1,3 +1,3 @@
 export default {
-  buttonColor: '#03fc90',
+  buttonColor: '#198754',
 };

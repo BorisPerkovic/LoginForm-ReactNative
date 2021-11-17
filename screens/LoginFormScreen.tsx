@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
+import { Button } from 'react-native-paper';
 
 import { DefaultText } from '../components/DefaultText';
 import { CustomInput } from '../components/CustomInput';
