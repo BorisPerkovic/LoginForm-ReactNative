@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Text, StyleSheet, StyleProp, TextStyle } from 'react-native';
 
 interface DefaultTextProps {
-  textStyle: StyleProp<TextStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }
 
 export const DefaultText: FunctionComponent<DefaultTextProps> = ({

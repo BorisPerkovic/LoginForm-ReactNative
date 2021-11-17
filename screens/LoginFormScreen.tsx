@@ -5,7 +5,7 @@ import { DefaultText } from '../components/DefaultText';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
 
-const LoginFormScreen = () => {
+export const LoginFormScreen = () => {
   const onPress = () => {
     console.log('pressed');
   };
@@ -27,13 +27,17 @@ const LoginFormScreen = () => {
         <DefaultText textStyle={styles.inputLabel}>Password</DefaultText>
         <CustomInput type={true} onChangeText={() => {}} />
       </View>
-      <View>
-        <Text>Forgot password?</Text>
+      <View style={styles.forgotPass}>
+        <DefaultText>Forgot password?</DefaultText>
+      </View>
+      <View style={styles.buttonContainer}>
         <CustomButton title="Log In" onPress={onPress} />
       </View>
-      <View>
-        <Text>Don't have an account?</Text>
-        <Text>Create an Account</Text>
+      <View style={styles.account}>
+        <DefaultText>Don't have an account?</DefaultText>
+        <DefaultText textStyle={{ color: 'white' }}>
+          Create an Account
+        </DefaultText>
       </View>
     </View>
   );
@@ -49,8 +53,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 150,
+    height: 150,
     marginTop: 30,
   },
   title: {
@@ -66,6 +70,19 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: 30,
   },
+  forgotPass: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  account: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
-
-export default LoginFormScreen;

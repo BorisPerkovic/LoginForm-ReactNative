@@ -1,12 +1,8 @@
 import React from 'react';
-import LoginFormScreen from "./screens/LoginFormScreen";
+import { LoginFormScreen } from './screens/LoginFormScreen';
 
 const App = () => {
-  return (
-    <LoginFormScreen />
-  );
+  return <LoginFormScreen />;
 };
-
-
 
 export default App;
