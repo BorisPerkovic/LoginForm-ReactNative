@@ -2,8 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 
-import Colors from '../constants/colors';
-
 interface DueafultButtonProps {
   style?: StyleProp<ViewStyle>;
   title: string;

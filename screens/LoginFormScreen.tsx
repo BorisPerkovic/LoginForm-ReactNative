@@ -20,7 +20,12 @@ export const LoginFormScreen = () => {
             uri: 'https://www.iconpacks.net/icons/1/free-target-icon-777-thumb.png',
           }}
         />
-        <DefaultText textStyle={styles.title}>mygoals</DefaultText>
+        <DefaultText textStyle={styles.title}>
+          my
+          <DefaultText textStyle={{ fontWeight: 'bold', color: 'white' }}>
+            goals
+          </DefaultText>
+        </DefaultText>
       </View>
       <View style={styles.inputContainer}>
         <DefaultText textStyle={styles.inputLabel}>Email</DefaultText>
