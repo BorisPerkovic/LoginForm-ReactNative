@@ -17,6 +17,7 @@ export const CustomInput: FunctionComponent<DefaultInputtProps> = ({
       secureTextEntry={type}
       style={[styles.input, style]}
       onChange={onChangeText}
+      autoFocus={true}
     />
   );
 };
@@ -26,5 +27,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderBottomColor: 'gray',
     borderBottomWidth: 1,
+    color: 'white',
+    fontSize: 18,
   },
 });
