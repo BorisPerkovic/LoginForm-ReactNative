@@ -1,6 +1,12 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, StyleProp, ViewStyle, TextStyle } from 'react-native';
-import { Button, Text } from 'react-native-paper';
+import {
+  StyleSheet,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
+  Pressable,
+  Text,
+} from 'react-native';
 
 interface DueafultButtonProps {
   style?: StyleProp<ViewStyle>;
@@ -16,17 +22,14 @@ export const CustomButton: FunctionComponent<DueafultButtonProps> = ({
   onPress,
 }) => {
   return (
-    <Button style={[styles.button, style]} mode="contained" onPress={onPress}>
-      <Text style={[styles.buttonText, buttonTextStyle]}>{title}</Text>
-    </Button>
+    <Pressable style={[styles.button, style]} onPress={onPress}>
+      <Text style={[buttonTextStyle]}>{title}</Text>
+    </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
     borderRadius: 30,
-  },
-  buttonText: {
-    textAlign: 'center',
   },
 });

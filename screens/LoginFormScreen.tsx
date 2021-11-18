@@ -98,11 +98,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: '55%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '45%',
     backgroundColor: Colors.buttonColor,
+    height: 44,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 15,
+    fontSize: 18,
+    color: 'black',
   },
 });
