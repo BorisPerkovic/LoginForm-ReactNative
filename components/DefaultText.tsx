@@ -14,6 +14,6 @@ export const DefaultText: FunctionComponent<DefaultTextProps> = ({
 
 const styles = StyleSheet.create({
   text: {
-    color: '#888',
+    color: '#b0b5c2',
   },
 });

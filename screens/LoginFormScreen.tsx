@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, StatusBar } from 'react-native';
 
 import Colors from '../constants/colors';
 import { DefaultText } from '../components/DefaultText';
@@ -13,16 +13,17 @@ export const LoginFormScreen = () => {
 
   return (
     <View style={styles.formContainer}>
+      <StatusBar backgroundColor="#26324E" />
       <View style={styles.imageContent}>
         <Image
           style={styles.image}
           source={{
-            uri: 'https://www.iconpacks.net/icons/1/free-target-icon-777-thumb.png',
+            uri: 'https://www.freeiconspng.com/uploads/white-strategy-icon-33.png',
           }}
         />
         <DefaultText textStyle={styles.title}>
           my
-          <DefaultText textStyle={{ fontWeight: 'bold', color: 'white' }}>
+          <DefaultText textStyle={{ fontWeight: 'bold', color: '#E9E9EB' }}>
             goals
           </DefaultText>
         </DefaultText>
@@ -46,8 +47,9 @@ export const LoginFormScreen = () => {
       </View>
       <View style={styles.account}>
         <DefaultText>Don't have an account?</DefaultText>
-        <DefaultText textStyle={{ color: 'white' }}>
-          Create an Account
+        <DefaultText
+          textStyle={{ color: '#E9E9EB', fontWeight: 'bold', marginTop: 10 }}>
+          Create an Account.
         </DefaultText>
       </View>
     </View>
@@ -64,14 +66,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 150,
-    height: 150,
+    width: 170,
+    height: 170,
     marginTop: 30,
   },
   title: {
     fontSize: 30,
-    color: 'white',
-    marginTop: 10,
+    color: '#E9E9EB',
+    marginTop: 5,
     marginBottom: 20,
   },
   inputContainer: {

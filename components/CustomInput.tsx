@@ -25,8 +25,8 @@ export const CustomInput: FunctionComponent<DefaultInputtProps> = ({
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    borderBottomColor: 'gray',
-    borderBottomWidth: 1,
+    borderBottomColor: '#3C4760',
+    borderBottomWidth: 3,
     color: 'white',
     fontSize: 18,
   },
