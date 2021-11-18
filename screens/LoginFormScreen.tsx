@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Button } from 'react-native-paper';
 
+import Colors from '../constants/colors';
 import { DefaultText } from '../components/DefaultText';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
@@ -32,7 +32,12 @@ export const LoginFormScreen = () => {
         <DefaultText>Forgot password?</DefaultText>
       </View>
       <View style={styles.buttonContainer}>
-        <CustomButton title="Log In" onPress={onPress} />
+        <CustomButton
+          title="Log In"
+          style={styles.button}
+          buttonTextStyle={styles.buttonText}
+          onPress={onPress}
+        />
       </View>
       <View style={styles.account}>
         <DefaultText>Don't have an account?</DefaultText>
@@ -47,7 +52,7 @@ export const LoginFormScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
-    backgroundColor: '#2c2e2c',
+    backgroundColor: Colors.primaryColor,
   },
   imageContent: {
     justifyContent: 'center',
@@ -85,5 +90,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  button: {
+    width: '55%',
+    backgroundColor: Colors.buttonColor,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 15,
   },
 });
