@@ -13,7 +13,7 @@ export const LoginFormScreen = () => {
 
   return (
     <View style={styles.formContainer}>
-      <StatusBar backgroundColor="#26324E" />
+      <StatusBar backgroundColor={Colors.primaryColor} />
       <View style={styles.imageContent}>
         <Image
           style={styles.image}
@@ -73,11 +73,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     color: '#E9E9EB',
-    marginTop: 5,
     marginBottom: 20,
   },
   inputContainer: {
-    paddingHorizontal: 30,
+    paddingHorizontal: 35,
   },
   inputLabel: {
     fontSize: 15,
