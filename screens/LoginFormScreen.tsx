@@ -5,6 +5,7 @@ import Colors from '../constants/colors';
 import { DefaultText } from '../components/DefaultText';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
+import { ElipsisIcon } from '../components/ElipsisIcon';
 
 export const LoginFormScreen = () => {
   const onPress = () => {
@@ -14,6 +15,9 @@ export const LoginFormScreen = () => {
   return (
     <View style={styles.formContainer}>
       <StatusBar backgroundColor={Colors.primaryColor} />
+      <View style={styles.svg}>
+        <ElipsisIcon width={50} height={30} color="#b0b5c2" />
+      </View>
       <View style={styles.imageContent}>
         <Image
           style={styles.image}
@@ -107,5 +111,9 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: 'black',
+  },
+  svg: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
   },
 });
