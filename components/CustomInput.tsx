@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { TextInput, StyleSheet, StyleProp, TextInputProps } from 'react-native';
+import { TextInput } from 'react-native';
 
 interface DefaultInputtProps {
-  style?: StyleProp<TextInputProps>;
+  style?: any;
   type: boolean;
   onChangeText: () => void;
 }
@@ -15,19 +15,9 @@ export const CustomInput: FunctionComponent<DefaultInputtProps> = ({
   return (
     <TextInput
       secureTextEntry={type}
-      style={[styles.input, style]}
+      style={[style]}
       onChange={onChangeText}
       autoFocus={true}
     />
   );
 };
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    borderBottomColor: '#3C4760',
-    borderBottomWidth: 3,
-    color: 'white',
-    fontSize: 18,
-  },
-});
