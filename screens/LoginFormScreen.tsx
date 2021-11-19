@@ -8,10 +8,6 @@ import { CustomButton } from '../components/CustomButton';
 import { ElipsisIcon } from '../components/ElipsisIcon';
 
 export const LoginFormScreen = () => {
-  const onPress = () => {
-    console.log('pressed');
-  };
-
   return (
     <View style={styles.formContainer}>
       <StatusBar backgroundColor={Colors.primaryColor} />
@@ -46,7 +42,9 @@ export const LoginFormScreen = () => {
           title="Log In"
           style={styles.button}
           buttonTextStyle={styles.buttonText}
-          onPress={onPress}
+          onPress={() => {
+            console.log('pressed');
+          }}
         />
       </View>
       <View style={styles.account}>
