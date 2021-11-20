@@ -1,46 +1,57 @@
 import React from 'react';
-import { View, StyleSheet, Image, StatusBar, Dimensions } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 
 import Colors from '../constants/colors';
 import { DefaultText } from '../components/DefaultText';
 import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
 import { ElipsisIcon } from '../components/ElipsisIcon';
+import { CustomStatusBar } from '../components/CustomStatusBar';
 
 export const LoginFormScreen = () => {
-  console.log(Dimensions.get('window').height);
-
   return (
-    <View style={styles.formContainer}>
-      <StatusBar backgroundColor={Colors.primaryColor} />
-      <View style={styles.top}>
-        <View style={styles.svg}>
+    <ScrollView style={styles.formContainer}>
+      <CustomStatusBar bgColor={Colors.primaryColor} />
+
+      {/* svg container */}
+      <View style={styles.svg}>
+        <Pressable
+          onPress={() => {
+            console.log('icon Pressed');
+          }}>
           <ElipsisIcon
-            width={Dimensions.get('window').width >= 350 ? 50 : 45}
-            height={Dimensions.get('window').width >= 350 ? 30 : 25}
-            color="#b0b5c2"
-            viewBox={
-              Dimensions.get('window').width >= 350
-                ? '10 0 50 50'
-                : '10 -15 50 50'
-            }
+            width={40}
+            height={30}
+            color={Colors.textColor}
+            viewBox="5 0 50 50"
           />
-        </View>
-        <View style={styles.imageContent}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: 'https://www.freeiconspng.com/uploads/white-strategy-icon-33.png',
-            }}
-          />
-          <DefaultText textStyle={styles.title}>
-            my
-            <DefaultText textStyle={{ fontWeight: 'bold', color: '#E9E9EB' }}>
-              goals
-            </DefaultText>
-          </DefaultText>
-        </View>
+        </Pressable>
       </View>
+      {/* end svg container */}
+
+      {/* image Container - image, title */}
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: 'https://www.freeiconspng.com/uploads/white-strategy-icon-33.png',
+          }}
+        />
+        <DefaultText textStyle={styles.title}>
+          my
+          <DefaultText textStyle={styles.spanTitle}>goals</DefaultText>
+        </DefaultText>
+      </View>
+      {/* end image Container */}
+
+      {/* inputContainer - labels and inputs */}
       <View style={styles.inputContainer}>
         <DefaultText textStyle={styles.inputLabel}>Email</DefaultText>
         <CustomInput
@@ -51,61 +62,58 @@ export const LoginFormScreen = () => {
         <DefaultText textStyle={styles.inputLabel}>Password</DefaultText>
         <CustomInput style={styles.input} type={true} onChangeText={() => {}} />
       </View>
-      <View style={styles.bottom}>
-        <View style={styles.forgotPass}>
-          <DefaultText>Forgot password?</DefaultText>
-        </View>
-        <View style={styles.buttonContainer}>
-          <CustomButton
-            title="Log In"
-            style={styles.button}
-            buttonTextStyle={styles.buttonText}
-            onPress={() => {
-              console.log('pressed');
-            }}
-          />
-        </View>
-        <View style={styles.account}>
-          <DefaultText>Don't have an account?</DefaultText>
-          <DefaultText
-            textStyle={{
-              color: '#E9E9EB',
-              fontWeight: 'bold',
-              marginTop: Dimensions.get('window').width >= 350 ? 10 : 5,
-            }}>
-            Create an Account.
-          </DefaultText>
-        </View>
+      {/* end topContainer */}
+
+      {/* bottomContainer -  forgotPass, button, account text */}
+      <View style={styles.bottomContainer}>
+        <DefaultText>Forgot password?</DefaultText>
+        <CustomButton
+          title="Log In"
+          style={styles.button}
+          buttonTextStyle={styles.buttonText}
+          onPress={() => {
+            console.log('pressed');
+          }}
+        />
+        <DefaultText>Don't have an account?</DefaultText>
+        <DefaultText textStyle={styles.createAccount}>
+          Create an Account.
+        </DefaultText>
       </View>
-    </View>
+      {/* end bottomContainer */}
+    </ScrollView>
   );
 };
 
+/* Styles for log in Form */
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
     backgroundColor: Colors.primaryColor,
   },
-  top: {
-    height: '40%',
-    paddingVertical: 10,
+  svg: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
-  imageContent: {
+  imageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
   image: {
-    width: Dimensions.get('window').width >= 350 ? 170 : 100,
-    height: Dimensions.get('window').width >= 350 ? 170 : 100,
-    marginTop: Dimensions.get('window').width >= 350 ? 30 : 10,
+    width: (Dimensions.get('screen').width / 10) * 3,
+    height: (Dimensions.get('screen').width / 10) * 3,
   },
   title: {
     fontSize: Dimensions.get('window').width >= 350 ? 30 : 25,
-    color: '#E9E9EB',
+    color: Colors.secondaryColor,
     marginBottom: Dimensions.get('window').width >= 350 ? 20 : 10,
   },
+  spanTitle: {
+    fontWeight: 'bold',
+    color: Colors.secondaryColor,
+  },
   inputContainer: {
-    height: '30%',
     paddingHorizontal: 35,
   },
   inputLabel: {
@@ -114,42 +122,32 @@ const styles = StyleSheet.create({
   },
   input: {
     height: Dimensions.get('window').width >= 350 ? 40 : 35,
-    borderBottomColor: '#3C4760',
+    borderBottomColor: Colors.inputBorderColor,
     borderBottomWidth: Dimensions.get('window').width >= 350 ? 3 : 2,
     color: 'white',
     fontSize: Dimensions.get('window').width >= 350 ? 18 : 13,
   },
-  bottom: {
-    height: '30%',
-  },
-  forgotPass: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: Dimensions.get('window').width >= 350 ? 20 : 10,
-  },
-  buttonContainer: {
-    justifyContent: 'center',
+  bottomContainer: {
+    flex: 1,
     alignItems: 'center',
     paddingVertical: Dimensions.get('window').width >= 350 ? 20 : 15,
-  },
-  account: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   button: {
     justifyContent: 'center',
     alignItems: 'center',
     width: '45%',
     backgroundColor: Colors.buttonColor,
-    height: Dimensions.get('window').width >= 350 ? 44 : 35,
+    height: Dimensions.get('window').width >= 350 ? 50 : 35,
+    marginVertical: Dimensions.get('window').width >= 350 ? 60 : 20,
   },
   buttonText: {
     fontSize: Dimensions.get('window').width >= 350 ? 18 : 15,
     color: 'black',
   },
-  svg: {
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+  createAccount: {
+    color: Colors.secondaryColor,
+    fontWeight: 'bold',
+    marginTop: Dimensions.get('window').width >= 350 ? 10 : 5,
+    fontSize: Dimensions.get('window').width >= 350 ? 18 : 15,
   },
 });
