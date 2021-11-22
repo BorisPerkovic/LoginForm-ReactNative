@@ -1,25 +1,23 @@
-import { Alert } from 'react-native';
-
 export class LoginFormValidation {
-  constructor(email, password) {
-    this.email = email;
-    this.password = password;
+  isEmailValid(email, setEmail) {
+    const validEmail = email.trim() !== '' && email.includes('@');
+    if (validEmail) {
+      setEmail(true);
+      return true;
+    } else {
+      setEmail(false);
+      return false;
+    }
   }
 
-  isFormValid() {
-    const emptyFields = this.email.trim() !== '' && this.password.trim() !== '';
-    const validEmail = this.email.includes('@');
-    if (!emptyFields) {
-      Alert.alert(
-        'Empty Fields',
-        'You have an empty fields. All fields are required!',
-      );
+  isPasswordValid(password, setPassword) {
+    const validPassword = password.trim() !== '';
+    if (validPassword) {
+      setPassword(true);
+      return true;
+    } else {
+      setPassword(false);
       return false;
     }
-    if (!validEmail) {
-      Alert.alert('Invalid Email', 'Please provide valid email address');
-      return false;
-    }
-    return true;
   }
 }

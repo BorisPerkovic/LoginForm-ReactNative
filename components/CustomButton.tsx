@@ -4,13 +4,14 @@ import {
   StyleProp,
   ViewStyle,
   TextStyle,
-  Pressable,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 
 interface DueafultButtonProps {
   style?: StyleProp<ViewStyle>;
   title: string;
+  disabled: boolean;
   buttonTextStyle?: StyleProp<TextStyle>;
   onPress: () => void;
 }
@@ -19,12 +20,16 @@ export const CustomButton: FunctionComponent<DueafultButtonProps> = ({
   style,
   title,
   buttonTextStyle,
+  disabled,
   onPress,
 }) => {
   return (
-    <Pressable style={[styles.button, style]} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, style]}
+      onPress={onPress}
+      disabled={disabled}>
       <Text style={[buttonTextStyle]}>{title}</Text>
-    </Pressable>
+    </TouchableOpacity>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   StyleSheet,
@@ -18,18 +18,39 @@ import { CustomStatusBar } from '../components/CustomStatusBar';
 import { LoginFormValidation } from '../utils/LoginFormValidation';
 
 export const LoginFormScreen = () => {
-  /* sates */
+  /* states */
   const [enteredEmail, setEnteredEmail] = useState('');
+  const [emailIsValid, setEmailIsValid] = useState(false);
   const [enteredPassword, setEnteredPassword] = useState('');
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  /* on submit Log in button function with validation */
-  const onFormSubmit = () => {
-    const validForm = new LoginFormValidation(enteredEmail, enteredPassword);
-    if (!validForm.isFormValid()) {
-      return;
+  /* form validation */
+  const validForm = useCallback(() => {
+    const validFormInstance = new LoginFormValidation();
+    const validEmail = validFormInstance.isEmailValid(
+      enteredEmail,
+      setEmailIsValid,
+    );
+    const validPassword = validFormInstance.isPasswordValid(
+      enteredPassword,
+      setPasswordIsValid,
+    );
+    if (validEmail && validPassword) {
+      setIsButtonDisabled(false);
+    } else {
+      setIsButtonDisabled(true);
     }
-    Alert.alert('Sucess', 'Log in from has passed');
-  };
+  }, [enteredEmail, enteredPassword]);
+
+  /* effect after form */
+  useEffect(() => {
+    const identifier = setInterval(() => {
+      validForm();
+    }, 500);
+
+    return () => clearInterval(identifier);
+  }, [enteredEmail, enteredPassword]);
 
   return (
     <ScrollView style={styles.formContainer}>
@@ -75,6 +96,11 @@ export const LoginFormScreen = () => {
           value={enteredEmail}
           onChangeText={value => setEnteredEmail(value)}
         />
+        {!emailIsValid && (
+          <DefaultText textStyle={styles.errorMessage}>
+            Please, provide valid email address.
+          </DefaultText>
+        )}
         <DefaultText textStyle={styles.inputLabel}>Password</DefaultText>
         <CustomInput
           style={styles.input}
@@ -82,6 +108,11 @@ export const LoginFormScreen = () => {
           value={enteredPassword}
           onChangeText={value => setEnteredPassword(value)}
         />
+        {!passwordIsValid && (
+          <DefaultText textStyle={styles.errorMessage}>
+            Please, provide your password.
+          </DefaultText>
+        )}
       </View>
       {/* end topContainer */}
 
@@ -90,9 +121,12 @@ export const LoginFormScreen = () => {
         <DefaultText>Forgot password?</DefaultText>
         <CustomButton
           title="Log In"
-          style={styles.button}
+          style={!isButtonDisabled ? styles.button : styles.buttonDisabled}
           buttonTextStyle={styles.buttonText}
-          onPress={onFormSubmit}
+          onPress={() => {
+            Alert.alert('Succes', 'log in passed');
+          }}
+          disabled={isButtonDisabled}
         />
         <DefaultText>Don't have an account?</DefaultText>
         <DefaultText textStyle={styles.createAccount}>
@@ -146,6 +180,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: Dimensions.get('window').width >= 350 ? 18 : 13,
   },
+  errorMessage: {
+    color: 'red',
+    fontSize: 14,
+  },
   bottomContainer: {
     flex: 1,
     alignItems: 'center',
@@ -157,7 +195,16 @@ const styles = StyleSheet.create({
     width: '45%',
     backgroundColor: Colors.buttonColor,
     height: Dimensions.get('window').width >= 350 ? 50 : 35,
-    marginVertical: Dimensions.get('window').width >= 350 ? 60 : 20,
+    marginVertical: Dimensions.get('window').width >= 350 ? 50 : 20,
+  },
+  buttonDisabled: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '45%',
+    backgroundColor: Colors.buttonColor,
+    height: Dimensions.get('window').width >= 350 ? 50 : 35,
+    marginVertical: Dimensions.get('window').width >= 350 ? 50 : 20,
+    opacity: 0.5,
   },
   buttonText: {
     fontSize: Dimensions.get('window').width >= 350 ? 18 : 15,
