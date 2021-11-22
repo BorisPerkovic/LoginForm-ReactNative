@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   Dimensions,
   ScrollView,
   Pressable,
+  Alert,
 } from 'react-native';
 
 import Colors from '../constants/colors';
@@ -14,8 +15,22 @@ import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
 import { ElipsisIcon } from '../components/ElipsisIcon';
 import { CustomStatusBar } from '../components/CustomStatusBar';
+import { LoginFormValidaiton } from '../utils/LoginFormValidation';
 
 export const LoginFormScreen = () => {
+  /* sates */
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredPassword, setEnteredPassword] = useState('');
+
+  /* on submit Log in button function with validation */
+  const onFormSubmit = () => {
+    const validForm = new LoginFormValidaiton(enteredEmail, enteredPassword);
+    if (!validForm.isFormValid()) {
+      return;
+    }
+    Alert.alert('Sucess', 'Log in from has passed');
+  };
+
   return (
     <ScrollView style={styles.formContainer}>
       <CustomStatusBar bgColor={Colors.primaryColor} />
@@ -57,10 +72,16 @@ export const LoginFormScreen = () => {
         <CustomInput
           style={styles.input}
           type={false}
-          onChangeText={() => {}}
+          value={enteredEmail}
+          onChangeText={value => setEnteredEmail(value)}
         />
         <DefaultText textStyle={styles.inputLabel}>Password</DefaultText>
-        <CustomInput style={styles.input} type={true} onChangeText={() => {}} />
+        <CustomInput
+          style={styles.input}
+          type={true}
+          value={enteredPassword}
+          onChangeText={value => setEnteredPassword(value)}
+        />
       </View>
       {/* end topContainer */}
 
@@ -71,9 +92,7 @@ export const LoginFormScreen = () => {
           title="Log In"
           style={styles.button}
           buttonTextStyle={styles.buttonText}
-          onPress={() => {
-            console.log('pressed');
-          }}
+          onPress={onFormSubmit}
         />
         <DefaultText>Don't have an account?</DefaultText>
         <DefaultText textStyle={styles.createAccount}>
