@@ -15,7 +15,7 @@ import { CustomInput } from '../components/CustomInput';
 import { CustomButton } from '../components/CustomButton';
 import { ElipsisIcon } from '../components/ElipsisIcon';
 import { CustomStatusBar } from '../components/CustomStatusBar';
-import { LoginFormValidaiton } from '../utils/LoginFormValidation';
+import { LoginFormValidation } from '../utils/LoginFormValidation';
 
 export const LoginFormScreen = () => {
   /* sates */
@@ -24,7 +24,7 @@ export const LoginFormScreen = () => {
 
   /* on submit Log in button function with validation */
   const onFormSubmit = () => {
-    const validForm = new LoginFormValidaiton(enteredEmail, enteredPassword);
+    const validForm = new LoginFormValidation(enteredEmail, enteredPassword);
     if (!validForm.isFormValid()) {
       return;
     }

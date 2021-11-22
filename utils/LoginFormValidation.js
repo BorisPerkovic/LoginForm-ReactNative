@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 
-export class LoginFormValidaiton {
+export class LoginFormValidation {
   constructor(email, password) {
     this.email = email;
     this.password = password;
