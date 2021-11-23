@@ -1,32 +1,26 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  Dimensions,
-  ScrollView,
-  Pressable,
-  Alert,
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, ScrollView } from 'react-native';
 
 import Colors from '../constants/colors';
-import { DefaultText } from '../components/DefaultText';
-import { CustomInput } from '../components/CustomInput';
-import { CustomButton } from '../components/CustomButton';
-import { ElipsisIcon } from '../components/ElipsisIcon';
+import { Logo } from '../components/LoginForm/Logo';
+import { LoginForm } from '../components/LoginForm/LoginForm';
+import { Menu } from '../components/LoginForm/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { LoginFormValidation } from '../utils/LoginFormValidation';
+import { LoginButton } from '../components/LoginForm/LoginButton';
+import { CreateAccount } from '../components/LoginForm/CreateAccount';
+import { CustomInput } from '../components/LoginForm/CustomInput';
+import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
 
 export const LoginFormScreen = () => {
-  /* states */
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  /* form validation */
-  const validForm = useCallback(() => {
+  /* form validation function */
+  const validForm = () => {
     const validFormInstance = new LoginFormValidation();
     const validEmail = validFormInstance.isEmailValid(
       enteredEmail,
@@ -41,179 +35,62 @@ export const LoginFormScreen = () => {
     } else {
       setIsButtonDisabled(true);
     }
-  }, [enteredEmail, enteredPassword]);
+  };
 
-  /* effect after form */
   useEffect(() => {
-    const identifier = setInterval(() => {
-      validForm();
-    }, 500);
+    const identifier = setInterval(() => validForm(), 500);
 
     return () => clearInterval(identifier);
   }, [enteredEmail, enteredPassword]);
 
   return (
     <ScrollView style={styles.formContainer}>
-      <CustomStatusBar bgColor={Colors.primaryColor} />
+      <CustomStatusBar />
 
-      {/* svg container */}
-      <View style={styles.svg}>
-        <Pressable
-          onPress={() => {
-            console.log('icon Pressed');
-          }}>
-          <ElipsisIcon
-            width={40}
-            height={30}
-            color={Colors.textColor}
-            viewBox="5 0 50 50"
-          />
-        </Pressable>
-      </View>
-      {/* end svg container */}
+      {/* Menu */}
+      <Menu
+        onPressIcon={() => {
+          console.log('icon pressed');
+        }}
+      />
+      <Logo />
 
-      {/* image Container - image, title */}
-      <View style={styles.imageContainer}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'https://www.freeiconspng.com/uploads/white-strategy-icon-33.png',
-          }}
-        />
-        <DefaultText textStyle={styles.title}>
-          my
-          <DefaultText textStyle={styles.spanTitle}>goals</DefaultText>
-        </DefaultText>
-      </View>
-      {/* end image Container */}
-
-      {/* inputContainer - labels and inputs */}
-      <View style={styles.inputContainer}>
-        <DefaultText textStyle={styles.inputLabel}>Email</DefaultText>
+      {/* Login Form */}
+      <LoginForm>
         <CustomInput
-          style={styles.input}
-          type={false}
-          value={enteredEmail}
+          title="Email"
+          type="text"
           onChangeText={value => setEnteredEmail(value)}
         />
         {!emailIsValid && (
-          <DefaultText textStyle={styles.errorMessage}>
-            Please, provide valid email address.
-          </DefaultText>
+          <ErrorMessage>Please, provide valid email address</ErrorMessage>
         )}
-        <DefaultText textStyle={styles.inputLabel}>Password</DefaultText>
         <CustomInput
-          style={styles.input}
-          type={true}
-          value={enteredPassword}
+          title="Password"
+          type="password"
           onChangeText={value => setEnteredPassword(value)}
         />
         {!passwordIsValid && (
-          <DefaultText textStyle={styles.errorMessage}>
-            Please, provide your password.
-          </DefaultText>
+          <ErrorMessage>Please, provide valid password</ErrorMessage>
         )}
-      </View>
-      {/* end topContainer */}
+      </LoginForm>
 
-      {/* bottomContainer -  forgotPass, button, account text */}
-      <View style={styles.bottomContainer}>
-        <DefaultText>Forgot password?</DefaultText>
-        <CustomButton
-          title="Log In"
-          style={!isButtonDisabled ? styles.button : styles.buttonDisabled}
-          buttonTextStyle={styles.buttonText}
-          onPress={() => {
-            Alert.alert('Succes', 'log in passed');
-          }}
-          disabled={isButtonDisabled}
-        />
-        <DefaultText>Don't have an account?</DefaultText>
-        <DefaultText textStyle={styles.createAccount}>
-          Create an Account.
-        </DefaultText>
-      </View>
-      {/* end bottomContainer */}
+      {/* Delete Grid */}
+      <LoginButton
+        title="Login"
+        onPress={() => {
+          console.log('button pressed');
+        }}>
+        {/* Pass spacing from above always. Decide if you want to use flex or have fixed spacing based on context */}
+      </LoginButton>
+      <CreateAccount />
     </ScrollView>
   );
 };
-
 /* Styles for log in Form */
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
     backgroundColor: Colors.primaryColor,
-  },
-  svg: {
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  imageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    width: (Dimensions.get('screen').width / 10) * 3,
-    height: (Dimensions.get('screen').width / 10) * 3,
-  },
-  title: {
-    fontSize: Dimensions.get('window').width >= 350 ? 30 : 25,
-    color: Colors.secondaryColor,
-    marginBottom: Dimensions.get('window').width >= 350 ? 20 : 10,
-  },
-  spanTitle: {
-    fontWeight: 'bold',
-    color: Colors.secondaryColor,
-  },
-  inputContainer: {
-    paddingHorizontal: 35,
-  },
-  inputLabel: {
-    fontSize: Dimensions.get('window').width >= 350 ? 15 : 12,
-    marginTop: Dimensions.get('window').width >= 350 ? 30 : 20,
-  },
-  input: {
-    height: Dimensions.get('window').width >= 350 ? 40 : 35,
-    borderBottomColor: Colors.inputBorderColor,
-    borderBottomWidth: Dimensions.get('window').width >= 350 ? 3 : 2,
-    color: 'white',
-    fontSize: Dimensions.get('window').width >= 350 ? 18 : 13,
-  },
-  errorMessage: {
-    color: 'red',
-    fontSize: 14,
-  },
-  bottomContainer: {
-    flex: 1,
-    alignItems: 'center',
-    paddingVertical: Dimensions.get('window').width >= 350 ? 20 : 15,
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '45%',
-    backgroundColor: Colors.buttonColor,
-    height: Dimensions.get('window').width >= 350 ? 50 : 35,
-    marginVertical: Dimensions.get('window').width >= 350 ? 50 : 20,
-  },
-  buttonDisabled: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '45%',
-    backgroundColor: Colors.buttonColor,
-    height: Dimensions.get('window').width >= 350 ? 50 : 35,
-    marginVertical: Dimensions.get('window').width >= 350 ? 50 : 20,
-    opacity: 0.5,
-  },
-  buttonText: {
-    fontSize: Dimensions.get('window').width >= 350 ? 18 : 15,
-    color: 'black',
-  },
-  createAccount: {
-    color: Colors.secondaryColor,
-    fontWeight: 'bold',
-    marginTop: Dimensions.get('window').width >= 350 ? 10 : 5,
-    fontSize: Dimensions.get('window').width >= 350 ? 18 : 15,
   },
 });

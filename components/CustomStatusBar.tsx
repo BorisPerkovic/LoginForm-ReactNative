@@ -1,12 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import { StatusBar } from 'react-native';
+import Colors from '../constants/colors';
 
 interface DefaultStatuBarProps {
-  bgColor: string;
+  color?: string;
 }
 
 export const CustomStatusBar: FunctionComponent<DefaultStatuBarProps> = ({
-  bgColor,
+  color = Colors.primaryColor,
 }) => {
-  return <StatusBar backgroundColor={bgColor} />;
+  return <StatusBar backgroundColor={color} />;
 };
