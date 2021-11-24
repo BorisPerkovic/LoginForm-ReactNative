@@ -11,8 +11,14 @@ import { LoginButton } from '../components/LoginForm/LoginButton';
 import { CreateAccount } from '../components/LoginForm/CreateAccount';
 import { CustomInput } from '../components/LoginForm/CustomInput';
 import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../navigation/Navigator';
+
+type LogInNavigationType = StackNavigationProp<RootStackParamList, 'LogIn'>;
 
 export const LoginFormScreen = () => {
+  const navigation = useNavigation<LogInNavigationType>();
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [enteredPassword, setEnteredPassword] = useState('');
@@ -78,8 +84,9 @@ export const LoginFormScreen = () => {
       {/* Delete Grid */}
       <LoginButton
         title="Login"
+        disabled={isButtonDisabled}
         onPress={() => {
-          console.log('button pressed');
+          navigation.navigate('HomePage', { userId: '3' });
         }}>
         {/* Pass spacing from above always. Decide if you want to use flex or have fixed spacing based on context */}
       </LoginButton>

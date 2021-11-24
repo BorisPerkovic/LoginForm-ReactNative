@@ -1,8 +1,14 @@
 import React from 'react';
-import { LoginFormScreen } from './screens/LoginFormScreen';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { Navigator } from './navigation/Navigator';
 
 const App = () => {
-  return <LoginFormScreen />;
+  return (
+    <NavigationContainer>
+      <Navigator />
+    </NavigationContainer>
+  );
 };
 
 export default App;
