@@ -11,7 +11,7 @@ import { LoginButton } from '../components/LoginForm/LoginButton';
 import { CreateAccount } from '../components/LoginForm/CreateAccount';
 import { CustomInput } from '../components/LoginForm/CustomInput';
 import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../navigation/Navigator';
 
@@ -86,7 +86,10 @@ export const LoginFormScreen = () => {
         title="Login"
         disabled={isButtonDisabled}
         onPress={() => {
-          navigation.navigate('HomePage', { userId: '3' });
+          /*  navigation.dispatch(
+            StackActions.replace('HomePage', { userId: '3' }),
+          ); */
+          navigation.navigate('HomePage', { userId: '5' });
         }}>
         {/* Pass spacing from above always. Decide if you want to use flex or have fixed spacing based on context */}
       </LoginButton>
