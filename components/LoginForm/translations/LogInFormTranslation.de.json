@@ -1,0 +1,9 @@
+{
+  "email": "Email",
+  "password": "Passwort",
+  "email_error": "Bitte geben Sie eine gültige E-Mail-Adresse an'",
+  "password_error": "Bitte gib ein gültiges E-Mail-Passwort an",
+  "dont_have_account": "Sie haben kein Konto?",
+  "create_account": "Ein Konto erstellen",
+  "forgot_password": "Passwort vergessen?"
+}

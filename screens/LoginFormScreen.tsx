@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import Colors from '../constants/colors';
 import { Logo } from '../components/LoginForm/Logo';
@@ -18,6 +19,7 @@ import { RootStackParamList } from '../navigation/Navigator';
 type LogInNavigationType = StackNavigationProp<RootStackParamList, 'LogIn'>;
 
 export const LoginFormScreen = () => {
+  const { t, i18n } = useTranslation('login');
   const navigation = useNavigation<LogInNavigationType>();
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
@@ -56,7 +58,7 @@ export const LoginFormScreen = () => {
       {/* Menu */}
       <Menu
         onPressIcon={() => {
-          console.log('icon pressed');
+          i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en');
         }}
       />
       <Logo />
@@ -64,35 +66,29 @@ export const LoginFormScreen = () => {
       {/* Login Form */}
       <LoginForm>
         <CustomInput
-          title="Email"
+          title={t('email')}
           type="text"
           onChangeText={value => setEnteredEmail(value)}
         />
-        {!emailIsValid && (
-          <ErrorMessage>Please, provide valid email address</ErrorMessage>
-        )}
+        {!emailIsValid && <ErrorMessage>{t('email_error')}</ErrorMessage>}
         <CustomInput
-          title="Password"
+          title={t('password')}
           type="password"
           onChangeText={value => setEnteredPassword(value)}
         />
-        {!passwordIsValid && (
-          <ErrorMessage>Please, provide valid password</ErrorMessage>
-        )}
+        {!passwordIsValid && <ErrorMessage>{t('password_error')}</ErrorMessage>}
       </LoginForm>
 
       {/* Delete Grid */}
       <LoginButton
-        title="Login"
+        title={t('Login')}
         disabled={isButtonDisabled}
         onPress={() => {
           /*  navigation.dispatch(
             StackActions.replace('HomePage', { userId: '3' }),
           ); */
           navigation.navigate('HomePage', { userId: '5' });
-        }}>
-        {/* Pass spacing from above always. Decide if you want to use flex or have fixed spacing based on context */}
-      </LoginButton>
+        }}></LoginButton>
       <CreateAccount />
     </ScrollView>
   );

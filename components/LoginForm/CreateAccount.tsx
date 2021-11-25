@@ -1,13 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import Colors from '../../constants/colors';
 
 export const CreateAccount = () => {
+  const { t } = useTranslation('login');
   return (
     <View>
-      <Text style={styles.text}>Don't have an account?</Text>
-      <Text style={styles.account}>Create an Account.</Text>
+      <Text style={styles.text}>{t('dont_have_account')}</Text>
+      <Text style={styles.account}>{t('create_account')}</Text>
     </View>
   );
 };
