@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import Colors from '../constants/colors';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
+import { LanguageChangeModal } from '../components/LanguageChangeModal';
 import { Menu } from '../components/LoginForm/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { LoginFormValidation } from '../utils/LoginFormValidation';
@@ -26,6 +27,7 @@ export const LoginFormScreen = () => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   /* form validation function */
   const validForm = () => {
@@ -58,9 +60,14 @@ export const LoginFormScreen = () => {
       {/* Menu */}
       <Menu
         onPressIcon={() => {
-          i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en');
+          setModalVisible(!modalVisible);
         }}
       />
+
+      {modalVisible && (
+        <LanguageChangeModal onLanguageChange={setModalVisible} />
+      )}
+
       <Logo />
 
       {/* Login Form */}
