@@ -6,18 +6,18 @@ import Colors from '../constants/colors';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 import { LanguageChangeModal } from '../components/LanguageChangeModal';
-import { Menu } from '../components/LoginForm/Menu';
+import { Menu } from '../components/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { LoginFormValidation } from '../utils/LoginFormValidation';
 import { LoginButton } from '../components/LoginForm/LoginButton';
 import { CreateAccount } from '../components/LoginForm/CreateAccount';
 import { CustomInput } from '../components/LoginForm/CustomInput';
 import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
-import { useNavigation, StackActions } from '@react-navigation/native';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../navigation/Drawer';
+import { AppStackParamList } from '../navigation/Stacks/AppStack';
 
-type LogInNavigationType = StackNavigationProp<RootStackParamList, 'LogIn'>;
+type LogInNavigationType = StackNavigationProp<AppStackParamList, 'Login'>;
 
 export const LoginFormScreen = () => {
   const { t, i18n } = useTranslation('login');
@@ -59,8 +59,11 @@ export const LoginFormScreen = () => {
 
       {/* Menu */}
       <Menu
-        onPressIcon={() => {
+        onPressDots={() => {
           setModalVisible(!modalVisible);
+        }}
+        onPresMenu={() => {
+          navigation.dispatch(DrawerActions.openDrawer());
         }}
       />
 

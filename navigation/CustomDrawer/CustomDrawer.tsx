@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { SafeAreaView, View, Image, StyleSheet } from 'react-native';
+import { DrawerActions } from '@react-navigation/native';
+import { IconButton } from 'react-native-paper';
 import {
   DrawerItemList,
   DrawerContentScrollView,
@@ -7,25 +9,35 @@ import {
   DrawerContentOptions,
 } from '@react-navigation/drawer';
 
+import Colors from '../../constants/colors';
+
 interface CustomDrawerProps {
-  navigation: DrawerContentComponentProps<DrawerContentOptions>;
+  props: DrawerContentComponentProps<DrawerContentOptions>;
 }
 
 export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
-  navigation,
+  props,
 }) => {
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.menu}>
+        <IconButton
+          icon="menu"
+          color={Colors.primaryColor}
+          size={26}
+          onPress={() => props.navigation.closeDrawer()}
+        />
+      </View>
       <View style={styles.containerContent}>
         <Image
           source={{
-            uri: 'https://www.budgetbytes.com/wp-content/uploads/2012/03/Chicken-Yakisoba-noodles-fork-391x293.jpg',
+            uri: 'https://randomuser.me/api/portraits/men/41.jpg',
           }}
           style={styles.image}
         />
       </View>
       <DrawerContentScrollView>
-        <DrawerItemList {...navigation} />
+        <DrawerItemList {...props} />
       </DrawerContentScrollView>
     </SafeAreaView>
   );
@@ -34,6 +46,10 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  menu: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
   },
   containerContent: {
     height: 150,

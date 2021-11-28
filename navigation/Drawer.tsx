@@ -14,7 +14,7 @@ export const DrawerNavigator = () => {
   return (
     <DrawerStack.Navigator
       initialRouteName="App"
-      drawerContent={props => <CustomDrawer navigation={props} />}
+      drawerContent={props => <CustomDrawer props={props} />}
       drawerStyle={{
         backgroundColor: '#f4f4f4',
       }}>
