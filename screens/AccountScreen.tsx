@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export const ScreenDrawer1 = () => {
+export const Account = () => {
   return (
     <View style={styles.container}>
-      <Text>This is Screen Drawer 1</Text>
+      <Text>This is Account Screen</Text>
     </View>
   );
 };
