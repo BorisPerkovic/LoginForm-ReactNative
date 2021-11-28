@@ -14,12 +14,7 @@ export const Portfolio = () => {
   const navigation = useNavigation<PortolioPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Portfolio Screen!</Text>
       </View>

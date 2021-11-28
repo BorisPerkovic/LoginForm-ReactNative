@@ -21,12 +21,7 @@ export const HomePageScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>{t('gome_page_title')}</Text>
         <Text style={{ marginVertical: 10 }}>{t('params')}</Text>

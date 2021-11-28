@@ -1,25 +1,23 @@
 import React, { FunctionComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IconButton } from 'react-native-paper';
 
 import Colors from '../constants/colors';
 
 interface MenuProps {
   onPressDots: () => void;
-  onPresMenu: () => void;
 }
 
-export const Menu: FunctionComponent<MenuProps> = ({
-  onPressDots,
-  onPresMenu,
-}) => {
+export const Menu: FunctionComponent<MenuProps> = ({ onPressDots }) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <IconButton
         icon="menu"
         color={Colors.textColor}
         size={26}
-        onPress={onPresMenu}
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
       />
       <IconButton
         icon="dots-horizontal"

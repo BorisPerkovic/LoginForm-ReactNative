@@ -14,12 +14,7 @@ export const MapsScreen = () => {
   const navigation = useNavigation<MapsAccountPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Maps Screen</Text>
       </View>

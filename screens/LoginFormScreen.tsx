@@ -62,9 +62,6 @@ export const LoginFormScreen = () => {
         onPressDots={() => {
           setModalVisible(!modalVisible);
         }}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
       />
 
       {modalVisible && (

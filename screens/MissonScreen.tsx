@@ -14,12 +14,7 @@ export const Mission = () => {
   const navigation = useNavigation<MissionPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Mission Screen!</Text>
       </View>

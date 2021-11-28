@@ -14,12 +14,7 @@ export const Company = () => {
   const navigation = useNavigation<CompanyPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Company Screen!</Text>
       </View>

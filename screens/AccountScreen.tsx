@@ -14,12 +14,7 @@ export const Account = () => {
   const navigation = useNavigation<AccountPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Account Screen</Text>
       </View>

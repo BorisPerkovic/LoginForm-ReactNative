@@ -14,12 +14,7 @@ export const EditAccount = () => {
   const navigation = useNavigation<EditAccountPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu
-        onPressDots={() => {}}
-        onPresMenu={() => {
-          navigation.dispatch(DrawerActions.openDrawer());
-        }}
-      />
+      <Menu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Edit Account Screen</Text>
       </View>
