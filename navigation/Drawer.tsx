@@ -3,6 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { AppBottomTabNavigator } from './Bottomtabs/AppBottomTabs';
 import { AccountBottomTabNavigator } from './Bottomtabs/AccountBottomTabs';
+import { CompanyBottomTabNavigator } from './Bottomtabs/CompanyBottomTabs';
 
 const DrawerStack = createDrawerNavigator();
 
@@ -13,6 +14,10 @@ export const DrawerNavigator = () => {
       <DrawerStack.Screen
         name="Account"
         component={AccountBottomTabNavigator}
+      />
+      <DrawerStack.Screen
+        name="Company"
+        component={CompanyBottomTabNavigator}
       />
     </DrawerStack.Navigator>
   );

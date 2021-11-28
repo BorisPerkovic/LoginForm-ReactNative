@@ -30,9 +30,8 @@ export const AccountBottomTabNavigator = () => {
         name="Account"
         component={Account}
         options={{
-          tabBarIcon: ({ focused, color, size }) => {
-            const iconName = focused ? 'person' : 'person-outline';
-            return <Ionicons name={iconName} size={size} color={color} />;
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="person" size={size} color={color} />;
           },
         }}
       />
@@ -40,11 +39,14 @@ export const AccountBottomTabNavigator = () => {
         name="Edit"
         component={EditAccount}
         options={{
-          tabBarIcon: ({ focused, color, size }) => {
-            const iconName = focused
-              ? 'person-circle'
-              : 'person-circle-outline';
-            return <Ionicons name={iconName} size={size} color={color} />;
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <Ionicons
+                name="person-circle-outline"
+                size={size}
+                color={color}
+              />
+            );
           },
         }}
       />

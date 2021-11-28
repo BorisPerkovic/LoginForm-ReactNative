@@ -31,11 +31,8 @@ export const AppBottomTabNavigator = () => {
         name="App"
         component={AppStackNavigator}
         options={{
-          tabBarIcon: ({ focused, color, size }) => {
-            const iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-            return <Ionicons name={iconName} size={size} color={color} />;
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="home-outline" size={size} color={color} />;
           },
         }}
       />
@@ -43,9 +40,8 @@ export const AppBottomTabNavigator = () => {
         name="Maps"
         component={MapsScreen}
         options={{
-          tabBarIcon: ({ focused, color, size }) => {
-            const iconName = focused ? 'list-circle' : 'list-circle-outline';
-            return <Ionicons name={iconName} size={size} color={color} />;
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="locate-outline" size={size} color={color} />;
           },
         }}
       />
