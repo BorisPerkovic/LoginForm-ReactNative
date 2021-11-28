@@ -3,12 +3,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import './in18n/translations';
 
-import { BottomTabNavigator } from './navigation/Navigator';
+import { DrawerNavigator } from './navigation/Drawer';
 
 const App = () => {
   return (
     <NavigationContainer>
-      <BottomTabNavigator />
+      <DrawerNavigator />
     </NavigationContainer>
   );
 };

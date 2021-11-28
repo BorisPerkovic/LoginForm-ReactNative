@@ -15,7 +15,7 @@ import { CustomInput } from '../components/LoginForm/CustomInput';
 import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
 import { useNavigation, StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../navigation/Navigator';
+import { RootStackParamList } from '../navigation/Drawer';
 
 type LogInNavigationType = StackNavigationProp<RootStackParamList, 'LogIn'>;
 
@@ -94,7 +94,7 @@ export const LoginFormScreen = () => {
           /*  navigation.dispatch(
             StackActions.replace('HomePage', { userId: '3' }),
           ); */
-          navigation.navigate('HomePage', { userId: '5' });
+          navigation.navigate('HomePage');
         }}></LoginButton>
       <CreateAccount />
     </ScrollView>
