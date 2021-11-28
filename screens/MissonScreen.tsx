@@ -1,10 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
+import { CompanyBottomTabsParamList } from '../navigation/Bottomtabs/CompanyBottomTabs';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { Menu } from '../components/Menu';
+
+type MissionPageNavigationType = StackNavigationProp<
+  CompanyBottomTabsParamList,
+  'Mission'
+>;
 
 export const Mission = () => {
+  const navigation = useNavigation<MissionPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Text>This is Mission Screen!</Text>
+      <Menu
+        onPressDots={() => {}}
+        onPresMenu={() => {
+          navigation.dispatch(DrawerActions.openDrawer());
+        }}
+      />
+      <View style={styles.container}>
+        <Text>This is Mission Screen!</Text>
+      </View>
     </View>
   );
 };
