@@ -6,7 +6,7 @@ import Colors from '../constants/colors';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 import { LanguageChangeModal } from '../components/LanguageChangeModal';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { LoginFormValidation } from '../utils/LoginFormValidation';
 import { LoginButton } from '../components/LoginForm/LoginButton';
@@ -58,7 +58,7 @@ export const LoginFormScreen = () => {
       <CustomStatusBar />
 
       {/* Menu */}
-      <Menu
+      <CustomMenu
         onPressDots={() => {
           setModalVisible(!modalVisible);
         }}

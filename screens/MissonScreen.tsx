@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { CompanyBottomTabsParamList } from '../navigation/Bottomtabs/CompanyBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 
 type MissionPageNavigationType = StackNavigationProp<
   CompanyBottomTabsParamList,
@@ -14,7 +14,7 @@ export const Mission = () => {
   const navigation = useNavigation<MissionPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu onPressDots={() => {}} />
+      <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Mission Screen!</Text>
       </View>

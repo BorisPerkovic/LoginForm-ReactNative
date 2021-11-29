@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { AccountBottomTabsParamList } from '../navigation/Bottomtabs/AccountBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 
 type EditAccountPageNavigationType = StackNavigationProp<
   AccountBottomTabsParamList,
@@ -14,7 +14,7 @@ export const EditAccount = () => {
   const navigation = useNavigation<EditAccountPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu onPressDots={() => {}} />
+      <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Edit Account Screen</Text>
       </View>

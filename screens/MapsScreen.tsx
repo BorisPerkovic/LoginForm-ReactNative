@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { AppBottomTabsParamList } from '../navigation/Bottomtabs/AppBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 
 type MapsAccountPageNavigationType = StackNavigationProp<
   AppBottomTabsParamList,
@@ -14,7 +14,7 @@ export const MapsScreen = () => {
   const navigation = useNavigation<MapsAccountPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu onPressDots={() => {}} />
+      <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Maps Screen</Text>
       </View>

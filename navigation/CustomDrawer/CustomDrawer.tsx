@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import { SafeAreaView, View, Image, StyleSheet } from 'react-native';
-import { DrawerActions } from '@react-navigation/native';
 import { IconButton } from 'react-native-paper';
 import {
   DrawerItemList,

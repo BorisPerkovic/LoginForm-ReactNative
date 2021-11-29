@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { AccountBottomTabsParamList } from '../navigation/Bottomtabs/AccountBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -14,7 +14,7 @@ export const Account = () => {
   const navigation = useNavigation<AccountPageNavigationType>();
   return (
     <View style={styles.container}>
-      <Menu onPressDots={() => {}} />
+      <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Account Screen</Text>
       </View>

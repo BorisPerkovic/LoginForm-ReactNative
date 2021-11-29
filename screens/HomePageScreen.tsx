@@ -5,7 +5,7 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../navigation/Stacks/AppStack';
 import { useTranslation } from 'react-i18next';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 
 type HomePageNavigationType = StackNavigationProp<
   AppStackParamList,
@@ -21,7 +21,7 @@ export const HomePageScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Menu onPressDots={() => {}} />
+      <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>{t('gome_page_title')}</Text>
         <Text style={{ marginVertical: 10 }}>{t('params')}</Text>

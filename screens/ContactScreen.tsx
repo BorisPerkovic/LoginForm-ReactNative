@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { Menu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu';
 
 export const Contact = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <Menu onPressDots={() => {}} />
+      <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
         <Text>This is Contact Screen!</Text>
       </View>
