@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import Colors from '../constants/colors';
@@ -16,11 +16,13 @@ import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../navigation/Stacks/AppStack';
+import { useForm, Controller } from 'react-hook-form';
 
 type LogInNavigationType = StackNavigationProp<AppStackParamList, 'Login'>;
 
 export const LoginFormScreen = () => {
   const { t, i18n } = useTranslation('login');
+  const { control, handleSubmit, errors } = useForm();
   const navigation = useNavigation<LogInNavigationType>();
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState(false);
@@ -30,8 +32,10 @@ export const LoginFormScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   /* form validation function */
-  const validForm = () => {
-    const validFormInstance = new LoginFormValidation();
+  const onSubmit = (data: Object) => {
+    console.log('data', data);
+
+    /* const validFormInstance = new LoginFormValidation();
     const validEmail = validFormInstance.isEmailValid(
       enteredEmail,
       setEmailIsValid,
@@ -44,14 +48,14 @@ export const LoginFormScreen = () => {
       setIsButtonDisabled(false);
     } else {
       setIsButtonDisabled(true);
-    }
+    } */
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     const identifier = setInterval(() => validForm(), 500);
 
     return () => clearInterval(identifier);
-  }, [enteredEmail, enteredPassword]);
+  }, [enteredEmail, enteredPassword]); */
 
   return (
     <ScrollView style={styles.formContainer}>
@@ -72,7 +76,31 @@ export const LoginFormScreen = () => {
 
       {/* Login Form */}
       <LoginForm>
-        <CustomInput
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <CustomInput
+              title={t('email')}
+              type="text"
+              onChangeText={value => onChange(value)}
+              value={value}
+            />
+          )}
+          name="email"
+        />
+        <Controller
+          control={control}
+          render={({ field: { onChange, value } }) => (
+            <CustomInput
+              title={t('password')}
+              type="password"
+              onChangeText={value => onChange(value)}
+              value={value}
+            />
+          )}
+          name="pasword"
+        />
+        {/*  <CustomInput
           title={t('email')}
           type="text"
           onChangeText={value => setEnteredEmail(value)}
@@ -83,18 +111,19 @@ export const LoginFormScreen = () => {
           type="password"
           onChangeText={value => setEnteredPassword(value)}
         />
-        {!passwordIsValid && <ErrorMessage>{t('password_error')}</ErrorMessage>}
+        {!passwordIsValid && <ErrorMessage>{t('password_error')}</ErrorMessage>} */}
       </LoginForm>
 
       {/* Delete Grid */}
       <LoginButton
         title={t('Login')}
-        disabled={isButtonDisabled}
+        disabled={false}
         onPress={() => {
           /*  navigation.dispatch(
             StackActions.replace('HomePage', { userId: '3' }),
           ); */
-          navigation.navigate('HomePage');
+          handleSubmit(onSubmit)();
+          //navigation.navigate('HomePage');
         }}></LoginButton>
       <CreateAccount />
     </ScrollView>

@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IconButton, Menu } from 'react-native-paper';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Colors from '../../constants/colors';
 

@@ -6,12 +6,14 @@ import Colors from '../../constants/colors';
 interface DefaultInputtProps {
   title: string;
   type: 'text' | 'password';
+  value: string;
   onChangeText: (value: string) => void;
 }
 
 export const CustomInput: FunctionComponent<DefaultInputtProps> = ({
   title,
   type,
+  value,
   onChangeText,
 }) => {
   return (
@@ -20,6 +22,7 @@ export const CustomInput: FunctionComponent<DefaultInputtProps> = ({
       <TextInput
         style={styles.input}
         secureTextEntry={type === 'password'}
+        value={value}
         onChangeText={onChangeText}
       />
     </View>
