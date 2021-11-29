@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { AppBottomTabsParamList } from '../navigation/Bottomtabs/AppBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { CustomMenu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu/Menu';
 
 type MapsAccountPageNavigationType = StackNavigationProp<
   AppBottomTabsParamList,

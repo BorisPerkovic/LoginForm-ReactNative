@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IconButton, Menu } from 'react-native-paper';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 interface MenuProps {
   onPressDots: () => void;
@@ -38,9 +39,26 @@ export const CustomMenu: FunctionComponent<MenuProps> = ({ onPressDots }) => {
             />
           }
           style={styles.menu}>
-          <Menu.Item onPress={() => {}} title="Item 1" />
-          <Menu.Item onPress={() => {}} title="Item 2" />
-          <Menu.Item onPress={() => {}} title="Item 3" />
+          <Menu.Item
+            onPress={() => {}}
+            title="English"
+            icon={() => (
+              <Image
+                source={require('./images/english.svg')}
+                style={{ height: 20, width: 30 }}
+              />
+            )}
+          />
+          <Menu.Item
+            onPress={() => {}}
+            title="Deutschland"
+            icon={() => (
+              <Image
+                source={require('./images/germany.svg')}
+                style={{ height: 20, width: 30 }}
+              />
+            )}
+          />
         </Menu>
       </View>
     </View>

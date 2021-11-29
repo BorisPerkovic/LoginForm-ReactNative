@@ -5,7 +5,7 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../navigation/Stacks/AppStack';
 import { useTranslation } from 'react-i18next';
-import { CustomMenu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu/Menu';
 
 type HomePageNavigationType = StackNavigationProp<
   AppStackParamList,

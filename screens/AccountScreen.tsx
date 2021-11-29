@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { CustomMenu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu/Menu';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { AccountBottomTabsParamList } from '../navigation/Bottomtabs/AccountBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';

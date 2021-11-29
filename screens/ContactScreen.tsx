@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { CustomMenu } from '../components/Menu';
+import { CustomMenu } from '../components/Menu/Menu';
 
 export const Contact = () => {
   const navigation = useNavigation();
