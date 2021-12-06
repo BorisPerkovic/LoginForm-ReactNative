@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { IconButton, Menu } from 'react-native-paper';
@@ -11,7 +11,7 @@ interface MenuProps {
 
 export const CustomMenu: FunctionComponent<MenuProps> = ({ onPressDots }) => {
   const navigation = useNavigation();
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);

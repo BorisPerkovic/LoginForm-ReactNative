@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView, TextInput } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, ScrollView, Button } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import Colors from '../constants/colors';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
-import { LanguageChangeModal } from '../components/LanguageChangeModal';
 import { CustomMenu } from '../components/Menu/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { LoginFormValidation } from '../utils/LoginFormValidation';
@@ -22,62 +21,41 @@ type LogInNavigationType = StackNavigationProp<AppStackParamList, 'Login'>;
 
 export const LoginFormScreen = () => {
   const { t, i18n } = useTranslation('login');
-  const { control, handleSubmit, errors } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
   const navigation = useNavigation<LogInNavigationType>();
-  const [enteredEmail, setEnteredEmail] = useState('');
-  const [emailIsValid, setEmailIsValid] = useState(false);
-  const [enteredPassword, setEnteredPassword] = useState('');
-  const [passwordIsValid, setPasswordIsValid] = useState(false);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [modalVisible, setModalVisible] = useState(false);
 
   /* form validation function */
-  const onSubmit = (data: Object) => {
-    console.log('data', data);
-
-    /* const validFormInstance = new LoginFormValidation();
-    const validEmail = validFormInstance.isEmailValid(
-      enteredEmail,
-      setEmailIsValid,
-    );
-    const validPassword = validFormInstance.isPasswordValid(
-      enteredPassword,
-      setPasswordIsValid,
-    );
-    if (validEmail && validPassword) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    } */
+  const onSubmit = (data: { email: string; password: string }) => {
+    //navigation.navigate('HomePage');
   };
 
-  /* useEffect(() => {
-    const identifier = setInterval(() => validForm(), 500);
-
-    return () => clearInterval(identifier);
-  }, [enteredEmail, enteredPassword]); */
+  console.log('rendered from FORM');
 
   return (
     <ScrollView style={styles.formContainer}>
       <CustomStatusBar />
 
       {/* Menu */}
-      <CustomMenu
-        onPressDots={() => {
-          setModalVisible(!modalVisible);
-        }}
-      />
-
-      {modalVisible && (
-        <LanguageChangeModal onLanguageChange={setModalVisible} />
-      )}
+      <CustomMenu onPressDots={() => {}} />
 
       <Logo />
 
-      {/* Login Form */}
+      {/* Login Form using react-hook-form */}
       <LoginForm>
         <Controller
           control={control}
+          rules={{
+            required: true,
+          }}
           render={({ field: { onChange, value } }) => (
             <CustomInput
               title={t('email')}
@@ -88,8 +66,14 @@ export const LoginFormScreen = () => {
           )}
           name="email"
         />
+        {errors.email && (
+          <ErrorMessage>Please provide valid email address</ErrorMessage>
+        )}
         <Controller
           control={control}
+          rules={{
+            required: true,
+          }}
           render={({ field: { onChange, value } }) => (
             <CustomInput
               title={t('password')}
@@ -98,33 +82,19 @@ export const LoginFormScreen = () => {
               value={value}
             />
           )}
-          name="pasword"
+          name="password"
         />
-        {/*  <CustomInput
-          title={t('email')}
-          type="text"
-          onChangeText={value => setEnteredEmail(value)}
-        />
-        {!emailIsValid && <ErrorMessage>{t('email_error')}</ErrorMessage>}
-        <CustomInput
-          title={t('password')}
-          type="password"
-          onChangeText={value => setEnteredPassword(value)}
-        />
-        {!passwordIsValid && <ErrorMessage>{t('password_error')}</ErrorMessage>} */}
+        {errors.password && (
+          <ErrorMessage>Please provide valid password</ErrorMessage>
+        )}
       </LoginForm>
 
       {/* Delete Grid */}
       <LoginButton
         title={t('Login')}
         disabled={false}
-        onPress={() => {
-          /*  navigation.dispatch(
-            StackActions.replace('HomePage', { userId: '3' }),
-          ); */
-          handleSubmit(onSubmit)();
-          //navigation.navigate('HomePage');
-        }}></LoginButton>
+        onPress={handleSubmit(onSubmit)}
+      />
       <CreateAccount />
     </ScrollView>
   );
