@@ -18,6 +18,10 @@ import { AppStackParamList } from '../navigation/Stacks/AppStack';
 import { useForm, Controller } from 'react-hook-form';
 
 type LogInNavigationType = StackNavigationProp<AppStackParamList, 'Login'>;
+type LogInFormTypes = {
+  email: string;
+  password: string;
+};
 
 export const LoginFormScreen = () => {
   const { t, i18n } = useTranslation('login');
@@ -25,7 +29,7 @@ export const LoginFormScreen = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LogInFormTypes>({
     defaultValues: {
       email: '',
       password: '',
@@ -34,11 +38,12 @@ export const LoginFormScreen = () => {
   const navigation = useNavigation<LogInNavigationType>();
 
   /* form validation function */
-  const onSubmit = (data: { email: string; password: string }) => {
+  const onSubmit = (data: LogInFormTypes) => {
+    console.log('email: ', data.email);
+    console.log('pass: ', data.password);
+
     //navigation.navigate('HomePage');
   };
-
-  console.log('rendered from FORM');
 
   return (
     <ScrollView style={styles.formContainer}>
@@ -54,7 +59,15 @@ export const LoginFormScreen = () => {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: {
+              value: true,
+              message: 'Email address is required',
+            },
+            pattern: {
+              value:
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Please, provide valid email address',
+            },
           }}
           render={({ field: { onChange, value } }) => (
             <CustomInput
@@ -66,13 +79,14 @@ export const LoginFormScreen = () => {
           )}
           name="email"
         />
-        {errors.email && (
-          <ErrorMessage>Please provide valid email address</ErrorMessage>
-        )}
+        {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: {
+              value: true,
+              message: 'Password is required',
+            },
           }}
           render={({ field: { onChange, value } }) => (
             <CustomInput
@@ -85,7 +99,7 @@ export const LoginFormScreen = () => {
           name="password"
         />
         {errors.password && (
-          <ErrorMessage>Please provide valid password</ErrorMessage>
+          <ErrorMessage>{errors.password.message}</ErrorMessage>
         )}
       </LoginForm>
 
