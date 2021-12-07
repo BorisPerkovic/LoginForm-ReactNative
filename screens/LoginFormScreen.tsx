@@ -39,10 +39,7 @@ export const LoginFormScreen = () => {
 
   /* form validation function */
   const onSubmit = (data: LogInFormTypes) => {
-    console.log('email: ', data.email);
-    console.log('pass: ', data.password);
-
-    //navigation.navigate('HomePage');
+    navigation.navigate('HomePage');
   };
 
   return (
