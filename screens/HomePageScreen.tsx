@@ -14,6 +14,8 @@ import { useTranslation } from 'react-i18next';
 import { CustomMenu } from '../components/Menu/Menu';
 import axios, { AxiosResponse } from 'axios';
 
+import Colors from '../constants/colors';
+
 type HomePageNavigationType = StackNavigationProp<
   AppStackParamList,
   'HomePage'
@@ -26,18 +28,18 @@ interface DataTypes {
   full_name: string;
 }
 
-import Colors from '../constants/colors';
-
 export const HomePageScreen = () => {
   const [repos, setRepos] = useState<DataTypes[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [fetchError, setFetchError] = useState(null);
+  const [fetchError, setFetchError] = useState('');
 
   const { t, i18n } = useTranslation('home');
   const { params } = useRoute<RouteProp<AppStackParamList, 'HomePage'>>();
   const navigation = useNavigation<HomePageNavigationType>();
 
   useEffect(() => {
+    setFetchError('');
+    setIsLoading(true);
     axios
       .get<DataTypes[]>('https://api.github.com/repositories')
       .then(response => {
@@ -45,8 +47,10 @@ export const HomePageScreen = () => {
         setRepos(response.data);
       })
       .catch(err => {
-        setFetchError(err.message);
-        setIsLoading(false);
+        if (err.response) {
+          setFetchError('something went wrong!');
+          setIsLoading(false);
+        }
       });
   }, []);
 
@@ -57,7 +61,8 @@ export const HomePageScreen = () => {
         {isLoading && (
           <ActivityIndicator size="large" color={Colors.primaryColor} />
         )}
-        {!isLoading && (
+        {fetchError !== '' && <Text>{fetchError}</Text>}
+        {!isLoading && fetchError === '' && (
           <FlatList
             data={repos}
             renderItem={itemData => (
