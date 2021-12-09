@@ -3,10 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { LoginFormScreen } from '../../screens/LoginFormScreen';
 import { HomePageScreen } from '../../screens//HomePageScreen';
+import { UserRepositoriesScreen } from '../../screens/UsersRepositoriesScreen';
 
 export type AppStackParamList = {
   HomePage: undefined;
   Login: undefined;
+  UsersRepos: { name: string };
 };
 
 const Stack = createStackNavigator<AppStackParamList>();
@@ -17,6 +19,7 @@ export const AppStackNavigator = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={LoginFormScreen} />
       <Stack.Screen name="HomePage" component={HomePageScreen} />
+      <Stack.Screen name="UsersRepos" component={UserRepositoriesScreen} />
     </Stack.Navigator>
   );
 };

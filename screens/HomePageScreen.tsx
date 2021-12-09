@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { RouteProp, useFocusEffect, useRoute } from '@react-navigation/core';
 import {
   View,
   Text,
@@ -25,7 +24,6 @@ type HomePageNavigationType = StackNavigationProp<
 export const HomePageScreen = () => {
   const requestState = useFetchAllRepositories();
   const { t, i18n } = useTranslation('home');
-  const { params } = useRoute<RouteProp<AppStackParamList, 'HomePage'>>();
   const navigation = useNavigation<HomePageNavigationType>();
 
   return (
@@ -45,7 +43,11 @@ export const HomePageScreen = () => {
                 name={itemData.item.name}
                 fullName={itemData.item.full_name}
                 imageUrl={itemData.item.owner.avatar_url}
-                viewRepositories={() => {}}
+                viewRepositories={() => {
+                  navigation.navigate('UsersRepos', {
+                    name: itemData.item.owner.login,
+                  });
+                }}
               />
             )}
             keyExtractor={item => item.id.toString()}

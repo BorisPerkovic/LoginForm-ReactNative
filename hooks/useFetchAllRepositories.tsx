@@ -5,7 +5,7 @@ import config from '../config';
 interface DataTypes {
   id: number;
   name: string;
-  owner: { avatar_url: string };
+  owner: { avatar_url: string; login: string };
   full_name: string;
 }
 
@@ -20,7 +20,7 @@ export const useFetchAllRepositories = () => {
     axios
       .get<DataTypes[]>(`${config.BASE_URL}/repositories`, {
         headers: {
-          Authorization: 'token' + config.GIT_ACCESS_TOKEN,
+          Authorization: `token${config.GIT_ACCESS_TOKEN}`,
         },
       })
       .then(response => {
