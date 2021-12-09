@@ -19,7 +19,7 @@ export const useFetchAllRepositories = () => {
     axios
       .get<DataTypes[]>('https://api.github.com/repositories', {
         headers: {
-          Authorization: 'token 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',
+          Authorization: 'token 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',
         },
       })
       .then(response => {
