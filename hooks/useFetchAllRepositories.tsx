@@ -17,7 +17,11 @@ export const useFetchAllRepositories = () => {
   useEffect(() => {
     setRequestState({ status: 'loading', data: [] });
     axios
-      .get<DataTypes[]>('https://api.github.com/repositories')
+      .get<DataTypes[]>('https://api.github.com/repositories', {
+        headers: {
+          Authorization: 'token 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',
+        },
+      })
       .then(response => {
         setRequestState({
           status: 'resolved',
