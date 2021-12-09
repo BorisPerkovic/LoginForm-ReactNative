@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface DataTypes {
@@ -21,7 +21,7 @@ export const useFetchAllRepositories = () => {
       .then(response => {
         setRequestState({
           status: 'resolved',
-          data: response.data.slice(1, 20),
+          data: response.data.slice(1, 25),
         });
       })
       .catch(err => {

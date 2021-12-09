@@ -13,7 +13,7 @@ import { AppStackParamList } from '../navigation/Stacks/AppStack';
 import { useTranslation } from 'react-i18next';
 import { CustomMenu } from '../components/Menu/Menu';
 import { UsersCard } from '../components/UsersCard';
-import { useFetchAllRepositories } from '../hooks/useFetch';
+import { useFetchAllRepositories } from '../hooks/useFetchAllRepositories';
 
 import Colors from '../constants/colors';
 
@@ -23,14 +23,10 @@ type HomePageNavigationType = StackNavigationProp<
 >;
 
 export const HomePageScreen = () => {
-  /* const [requestState, setRequestState] = useState<'loading' | 'error' | 'initial' | 'resolved'>({status: 'initial', pa}); */
-
   const requestState = useFetchAllRepositories();
   const { t, i18n } = useTranslation('home');
   const { params } = useRoute<RouteProp<AppStackParamList, 'HomePage'>>();
   const navigation = useNavigation<HomePageNavigationType>();
-
-  console.log('request', requestState.status);
 
   return (
     <View style={styles.container}>
