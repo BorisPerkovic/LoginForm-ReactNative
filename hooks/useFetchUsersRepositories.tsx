@@ -5,11 +5,11 @@ import config from '../config';
 interface DataTypes {
   id: number;
   name: string;
-  owner: { avatar_url: string; login: string };
-  full_name: string;
+  /* owner: { avatar_url: string};
+  full_name: string; */
 }
 
-export const useFetchAllRepositories = () => {
+export const useFetchUsersRepositories = (name: string) => {
   const [requestState, setRequestState] = useState<{
     status: 'loading' | 'error' | 'initial' | 'resolved';
     data: DataTypes[];
@@ -18,7 +18,7 @@ export const useFetchAllRepositories = () => {
   useEffect(() => {
     setRequestState({ status: 'loading', data: [] });
     axios
-      .get<DataTypes[]>(`${config.BASE_URL}/repositories`, {
+      .get<DataTypes[]>(`${config.BASE_URL}/users/${name}/repos`, {
         headers: {
           Authorization: `token${config.GIT_ACCESS_TOKEN}`,
         },
@@ -26,7 +26,7 @@ export const useFetchAllRepositories = () => {
       .then(response => {
         setRequestState({
           status: 'resolved',
-          data: response.data.slice(1, 25),
+          data: response.data,
         });
       })
       .catch(err => {
