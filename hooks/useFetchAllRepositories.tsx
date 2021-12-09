@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 interface DataTypes {
   id: number;
@@ -17,9 +18,9 @@ export const useFetchAllRepositories = () => {
   useEffect(() => {
     setRequestState({ status: 'loading', data: [] });
     axios
-      .get<DataTypes[]>('https://api.github.com/repositories', {
+      .get<DataTypes[]>(`${config.BASE_URL}/repositories`, {
         headers: {
-          Authorization: 'token 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',
+          Authorization: 'token' + config.GIT_ACCESS_TOKEN,
         },
       })
       .then(response => {
@@ -31,6 +32,7 @@ export const useFetchAllRepositories = () => {
       .catch(err => {
         if (err.response) {
           setRequestState({ status: 'error', data: [] });
+          console.log(err.response.data);
         }
       });
 
