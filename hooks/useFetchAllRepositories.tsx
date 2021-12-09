@@ -32,7 +32,6 @@ export const useFetchAllRepositories = () => {
       .catch(err => {
         if (err.response) {
           setRequestState({ status: 'error', data: [] });
-          console.log(err.response.data);
         }
       });
 
