@@ -6,41 +6,21 @@ import {
   ActivityIndicator,
   FlatList,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { RouteProp, useRoute } from '@react-navigation/core';
 import { AppStackParamList } from '../navigation/Stacks/AppStack';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { CustomMenu } from '../components/Menu/Menu';
-import { useFetchUsersRepositories } from '../hooks/useFetchUsersRepositories';
-
-import Colors from '../constants/colors';
-
-type UsersReposPageNavigationType = StackNavigationProp<
-  AppStackParamList,
-  'UsersRepos'
->;
+import { UsersRepositoriesList } from '../components/UsersRepositories/UsersRepositoriesList';
 
 export const UserRepositoriesScreen = () => {
   const { params } = useRoute<RouteProp<AppStackParamList, 'UsersRepos'>>();
-  const navigation = useNavigation<UsersReposPageNavigationType>();
-  const requestState = useFetchUsersRepositories(params.name);
+
+  console.log('render');
 
   return (
     <View style={styles.container}>
       <CustomMenu onPressDots={() => {}} />
       <View style={styles.container}>
-        {requestState.status === 'loading' && (
-          <ActivityIndicator size="large" color={Colors.primaryColor} />
-        )}
-        {requestState.status === 'error' && <Text>Something went wrong!</Text>}
-        {requestState.status === 'resolved' && (
-          <FlatList
-            data={requestState.data}
-            renderItem={itemData => <Text>{itemData.item.name}</Text>}
-            keyExtractor={item => item.id.toString()}
-            maxToRenderPerBatch={25}
-          />
-        )}
+        <UsersRepositoriesList name={params.name} />
       </View>
     </View>
   );
