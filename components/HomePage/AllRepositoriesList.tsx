@@ -35,11 +35,13 @@ export const AllRepositoriesList = () => {
               viewRepositories={() => {
                 navigation.navigate('UsersRepos', {
                   name: itemData.item.owner.login,
+                  avatatar_url: itemData.item.owner.avatar_url,
                 });
               }}
             />
           )}
           keyExtractor={item => item.id.toString()}
+          maxToRenderPerBatch={30}
         />
       )}
     </>

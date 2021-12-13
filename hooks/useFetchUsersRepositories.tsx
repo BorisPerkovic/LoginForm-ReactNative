@@ -5,8 +5,9 @@ import config from '../config';
 interface DataTypes {
   id: number;
   name: string;
-  /* owner: { avatar_url: string};
-  full_name: string; */
+  html_url: string;
+  description: string;
+  language: string;
 }
 
 export const useFetchUsersRepositories = (name: string) => {

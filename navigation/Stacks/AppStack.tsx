@@ -8,7 +8,7 @@ import { UserRepositoriesScreen } from '../../screens/UsersRepositoriesScreen';
 export type AppStackParamList = {
   HomePage: undefined;
   Login: undefined;
-  UsersRepos: { name: string };
+  UsersRepos: { name: string; avatatar_url: string };
 };
 
 const Stack = createStackNavigator<AppStackParamList>();
