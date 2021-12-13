@@ -1,13 +1,13 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Account } from '../../screens/AccountScreen';
+import { SearchUsersScreen } from '../../screens/SearchUsersScreen';
 import { EditAccount } from '../../screens/EditAcoountScreen';
 import Colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export type AccountBottomTabsParamList = {
-  Account: undefined;
+  Search: undefined;
   Edit: undefined;
 };
 
@@ -18,7 +18,7 @@ const AccountBottomTabsNavigator =
 export const AccountBottomTabNavigator = () => {
   return (
     <AccountBottomTabsNavigator.Navigator
-      initialRouteName="Account"
+      initialRouteName="Search"
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: {
@@ -27,11 +27,11 @@ export const AccountBottomTabNavigator = () => {
         tabBarActiveTintColor: Colors.primaryColor,
       }}>
       <AccountBottomTabsNavigator.Screen
-        name="Account"
-        component={Account}
+        name="Search"
+        component={SearchUsersScreen}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return <Ionicons name="person" size={size} color={color} />;
+            return <Ionicons name="search" size={size} color={color} />;
           },
         }}
       />

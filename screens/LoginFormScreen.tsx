@@ -7,11 +7,10 @@ import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 import { CustomMenu } from '../components/Menu/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
-import { LoginFormValidation } from '../utils/LoginFormValidation';
+import { ErrorMessage } from '../components/ErrorMessage';
 import { LoginButton } from '../components/LoginForm/LoginButton';
 import { CreateAccount } from '../components/LoginForm/CreateAccount';
 import { CustomInput } from '../components/LoginForm/CustomInput';
-import { ErrorMessage } from '../components/LoginForm/ErrorMessage';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../navigation/Stacks/AppStack';
@@ -76,7 +75,7 @@ export const LoginFormScreen = () => {
           )}
           name="email"
         />
-        {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+        {errors.email && <ErrorMessage message={errors.email.message} />}
         <Controller
           control={control}
           rules={{
@@ -95,9 +94,7 @@ export const LoginFormScreen = () => {
           )}
           name="password"
         />
-        {errors.password && (
-          <ErrorMessage>{errors.password.message}</ErrorMessage>
-        )}
+        {errors.password && <ErrorMessage message={errors.password.message} />}
       </LoginForm>
 
       {/* Delete Grid */}

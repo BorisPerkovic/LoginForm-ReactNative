@@ -28,11 +28,11 @@ export const DrawerNavigator = () => {
         }}
       />
       <DrawerStack.Screen
-        name="Account"
+        name="Search"
         component={AccountBottomTabNavigator}
         options={{
           drawerIcon: ({ color, size }) => {
-            return <Ionicons name="person" size={size} color={color} />;
+            return <Ionicons name="search" size={size} color={color} />;
           },
         }}
       />

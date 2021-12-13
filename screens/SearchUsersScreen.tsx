@@ -4,19 +4,20 @@ import { CustomMenu } from '../components/Menu/Menu';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { AccountBottomTabsParamList } from '../navigation/Bottomtabs/AccountBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { SearchUsersForm } from '../components/SearchUsers/SearchUsersForm';
 
 type AccountPageNavigationType = StackNavigationProp<
   AccountBottomTabsParamList,
-  'Account'
+  'Search'
 >;
 
-export const Account = () => {
+export const SearchUsersScreen = () => {
   const navigation = useNavigation<AccountPageNavigationType>();
   return (
     <View style={styles.container}>
       <CustomMenu onPressDots={() => {}} />
-      <View style={styles.container}>
-        <Text>This is Account Screen</Text>
+      <View style={styles.containerContent}>
+        <SearchUsersForm />
       </View>
     </View>
   );
@@ -25,7 +26,9 @@ export const Account = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  containerContent: {
+    height: 100,
+    padding: 15,
   },
 });
