@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TextInput, Button } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 import Colors from '../../constants/colors';
 import { ErrorMessage } from '../ErrorMessage';
+import { SearchUsersList } from './SearchUsersList';
 
 type SearchFormTypes = {
   search: string;
@@ -21,11 +22,12 @@ export const SearchUsersForm = () => {
   });
 
   /* form validation function */
-  const onSubmit = (data: SearchFormTypes) => {
-    console.log(data.search);
+  const onSubmit = (data: SearchFormTypes) => {};
 
-    //navigation.navigate('HomePage');
-  };
+  /* 
+  useEffect(() => {
+    hookCall;
+  }, [param]); */
 
   return (
     <View style={styles.containerForm}>
@@ -55,6 +57,7 @@ export const SearchUsersForm = () => {
           onPress={handleSubmit(onSubmit)}
         />
       </View>
+      <View></View>
     </View>
   );
 };
