@@ -13,16 +13,14 @@ type HomePageNavigationType = StackNavigationProp<
   'HomePage'
 >;
 
-export type SearchSUersProps = {
-  changeParam: () => string;
-};
+interface SearchSUersProps {
+  param: string;
+}
 
 export const SearchUsersList: FunctionComponent<SearchSUersProps> = ({
-  changeParam,
+  param,
 }) => {
-  const textChanged = changeParam();
-
-  const requestState = useFetchSearchUsers(textChanged);
+  const requestState = useFetchSearchUsers(param);
   const datas = requestState.data['items'];
   const navigation = useNavigation<HomePageNavigationType>();
 
@@ -31,28 +29,33 @@ export const SearchUsersList: FunctionComponent<SearchSUersProps> = ({
       {requestState.status === 'loading' && (
         <ActivityIndicator size="large" color={Colors.primaryColor} />
       )}
-      {requestState.status === 'error' && <Text>Something went wrong!</Text>}
-      {requestState.status === 'resolved' && (
-        <FlatList
-          data={datas}
-          renderItem={({ item, index }) => (
-            <UsersCard
-              title="repositories"
-              name={item.login}
-              fullName={item.login}
-              imageUrl={item.avatar_url}
-              viewRepositories={() => {
-                navigation.navigate('UsersRepos', {
-                  name: item.login,
-                  avatatar_url: item.avatar_url,
-                });
-              }}
-            />
-          )}
-          keyExtractor={(item, index) => item.id.toString()}
-          maxToRenderPerBatch={30}
-        />
+      {requestState.status === 'error' && (
+        <Text style={{ textAlign: 'center' }}>Something went wrong!</Text>
       )}
+      {requestState.status === 'resolved' &&
+        (datas.length !== 0 && datas.length ? (
+          <FlatList
+            data={datas}
+            renderItem={({ item, index }) => (
+              <UsersCard
+                title="repositories"
+                name={item.login}
+                fullName={item.login}
+                imageUrl={item.avatar_url}
+                viewRepositories={() => {
+                  navigation.navigate('UsersRepos', {
+                    name: item.login,
+                    avatatar_url: item.avatar_url,
+                  });
+                }}
+              />
+            )}
+            keyExtractor={(item, index) => item.id.toString()}
+            maxToRenderPerBatch={30}
+          />
+        ) : (
+          <Text style={{ textAlign: 'center' }}>No users found!</Text>
+        ))}
     </>
   );
 };

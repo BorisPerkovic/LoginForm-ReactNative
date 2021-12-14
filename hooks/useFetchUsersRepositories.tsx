@@ -37,7 +37,7 @@ export const useFetchUsersRepositories = (name: string) => {
       });
 
     return () => {};
-  }, []);
+  }, [name]);
 
   return requestState;
 };
