@@ -10,9 +10,11 @@ interface DataTypes {
 
 export const useFetchSearchUsers = (param: string) => {
   const [requestState, setRequestState] = useState<{
-    status: 'loading' | 'error' | 'initial' | 'resolved';
+    status: 'loading' | 'error' | 'resolved';
     data: DataTypes[];
-  }>({ status: 'initial', data: [] });
+  }>({ status: 'loading', data: [] });
+
+  console.log('hook rendered');
 
   useEffect(() => {
     setRequestState({ status: 'loading', data: [] });
@@ -33,6 +35,8 @@ export const useFetchSearchUsers = (param: string) => {
           setRequestState({ status: 'error', data: [] });
         }
       });
+
+    return () => {};
   }, [param]);
 
   return requestState;
