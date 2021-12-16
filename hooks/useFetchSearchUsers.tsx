@@ -14,8 +14,6 @@ export const useFetchSearchUsers = (param: string) => {
     data: User[];
   }>({ status: 'loading', data: [] });
 
-  console.log('hook rendered');
-
   useEffect(() => {
     let mounted = true;
     setRequestState({ status: 'loading', data: [] });

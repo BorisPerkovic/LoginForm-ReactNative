@@ -49,17 +49,24 @@ export const SearchUsersForm = () => {
         name="text"
       />
       {errors.text && <ErrorMessage message={errors.text.message} />}
-      {enteredText !== '' ? (
-        <SearchUsersList param={enteredText} />
-      ) : (
-        <Text style={{ textAlign: 'center' }}>Users will appear here</Text>
-      )}
+      <View style={styles.containerList}>
+        {enteredText !== '' ? (
+          <SearchUsersList param={enteredText} />
+        ) : (
+          <Text style={{ textAlign: 'center' }}>Users will appear here</Text>
+        )}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   containerForm: {
+    flex: 1,
     padding: 20,
+  },
+  containerList: {
+    flex: 1,
+    width: '100%',
   },
 });
