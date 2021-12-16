@@ -4,8 +4,6 @@ import { CustomMenu } from '../components/Menu/Menu';
 import { SearchUsersForm } from '../components/SearchUsers/SearchUsersFrom';
 
 export const SearchUsersScreen = () => {
-  console.log('render from search');
-
   return (
     <View style={styles.container}>
       <CustomMenu onPressDots={() => {}} />
