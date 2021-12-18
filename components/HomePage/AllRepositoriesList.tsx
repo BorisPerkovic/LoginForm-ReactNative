@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, FlatList, ActivityIndicator } from 'react-native';
+import { Text, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
-import { useFetchAllRepositories } from '../../hooks/useFetchAllRepositories';
+import { useAllRepositoriesQuery } from '../../services/githubApi';
 
 import Colors from '../../constants/colors';
 import { UsersCard } from '../UsersCard';
@@ -14,18 +14,19 @@ type HomePageNavigationType = StackNavigationProp<
 >;
 
 export const AllRepositoriesList = () => {
-  const requestState = useFetchAllRepositories();
+  const { data, error, isLoading, isSuccess, isFetching } =
+    useAllRepositoriesQuery();
   const navigation = useNavigation<HomePageNavigationType>();
 
   return (
     <>
-      {requestState.status === 'loading' && (
+      {isLoading && (
         <ActivityIndicator size="large" color={Colors.primaryColor} />
       )}
-      {requestState.status === 'error' && <Text>Something went wrong!</Text>}
-      {requestState.status === 'resolved' && (
+      {error && <Text>Something went wrong!</Text>}
+      {isSuccess && !isFetching && (
         <FlatList
-          data={requestState.data}
+          data={data?.slice(0, 30)}
           renderItem={itemData => (
             <UsersCard
               title="repositories"

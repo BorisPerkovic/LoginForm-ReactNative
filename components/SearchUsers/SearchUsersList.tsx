@@ -3,10 +3,10 @@ import { Text, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
-import { useFetchSearchUsers } from '../../hooks/useFetchSearchUsers';
 
 import Colors from '../../constants/colors';
 import { UsersCard } from '../UsersCard';
+import { useSearchUsersQuery } from '../../services/githubApi';
 
 type HomePageNavigationType = StackNavigationProp<
   AppStackParamList,
@@ -20,22 +20,23 @@ interface SearchSUersProps {
 export const SearchUsersList: FunctionComponent<SearchSUersProps> = ({
   param,
 }) => {
-  const requestState = useFetchSearchUsers(param);
-  const datas = requestState.data;
+  const { data, error, isFetching, isSuccess } = useSearchUsersQuery(param);
   const navigation = useNavigation<HomePageNavigationType>();
+  console.log('render');
 
   return (
     <>
-      {requestState.status === 'loading' && (
+      {isFetching && (
         <ActivityIndicator size="large" color={Colors.primaryColor} />
       )}
-      {requestState.status === 'error' && (
+      {error && (
         <Text style={{ textAlign: 'center' }}>Something went wrong!</Text>
       )}
-      {requestState.status === 'resolved' &&
-        (datas.length !== 0 && datas.length ? (
+      {isSuccess &&
+        !isFetching &&
+        (data?.items.length !== 0 ? (
           <FlatList
-            data={datas}
+            data={data?.items}
             renderItem={itemData => (
               <UsersCard
                 title="repositories"

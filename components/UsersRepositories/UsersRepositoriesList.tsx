@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { Text, FlatList, ActivityIndicator } from 'react-native';
-
 import Colors from '../../constants/colors';
-import { useFetchUsersRepositories } from '../../hooks/useFetchUsersRepositories';
+import { useUsersRepositoriesQuery } from '../../services/githubApi';
 import { UsersRepositoriesCard } from '../UsersRepositoriesCard';
 
 interface UsersReposProps {
@@ -12,17 +11,20 @@ interface UsersReposProps {
 export const UsersRepositoriesList: FunctionComponent<UsersReposProps> = ({
   name,
 }) => {
-  const requestState = useFetchUsersRepositories(name);
+  const { data, error, isFetching, isSuccess } =
+    useUsersRepositoriesQuery(name);
 
   return (
     <>
-      {requestState.status === 'loading' && (
+      {isFetching && (
         <ActivityIndicator size="large" color={Colors.primaryColor} />
       )}
-      {requestState.status === 'error' && <Text>Something went wrong!</Text>}
-      {requestState.status === 'resolved' && (
+      {error && (
+        <Text style={{ textAlign: 'center' }}>Something went wrong!</Text>
+      )}
+      {isSuccess && !isFetching && (
         <FlatList
-          data={requestState.data}
+          data={data}
           renderItem={itemData => (
             <UsersRepositoriesCard
               repoName={itemData.item.name}
