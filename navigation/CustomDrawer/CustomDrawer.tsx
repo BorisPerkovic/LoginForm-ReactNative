@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { SafeAreaView, View, Image, StyleSheet } from 'react-native';
+import { SafeAreaView, View, Image, StyleSheet, Button } from 'react-native';
 import { IconButton } from 'react-native-paper';
 import {
   DrawerItemList,
@@ -7,6 +7,8 @@ import {
   DrawerContentComponentProps,
   DrawerContentOptions,
 } from '@react-navigation/drawer';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../features/auth';
 
 import Colors from '../../constants/colors';
 
@@ -17,6 +19,8 @@ interface CustomDrawerProps {
 export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
   props,
 }) => {
+  const dispatch = useDispatch();
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.menu}>
@@ -38,6 +42,15 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
       <DrawerContentScrollView>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
+      <View>
+        <Button
+          title="logout"
+          onPress={() => {
+            dispatch(logOut());
+            props.navigation.closeDrawer();
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };

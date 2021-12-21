@@ -43,7 +43,7 @@ export const UsersRepositoriesList: FunctionComponent<UsersReposProps> = ({
             />
           )}
           keyExtractor={item => item.id.toString()}
-          maxToRenderPerBatch={25}
+          maxToRenderPerBatch={20}
         />
       )}
     </>

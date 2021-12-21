@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, ScrollView, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
-
-import Colors from '../constants/colors';
+import { useDispatch } from 'react-redux';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 import { CustomMenu } from '../components/Menu/Menu';
@@ -11,18 +10,18 @@ import { ErrorMessage } from '../components/ErrorMessage';
 import { LoginButton } from '../components/LoginForm/LoginButton';
 import { CreateAccount } from '../components/LoginForm/CreateAccount';
 import { CustomInput } from '../components/LoginForm/CustomInput';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { AppStackParamList } from '../navigation/Stacks/AppStack';
 import { useForm, Controller } from 'react-hook-form';
+import { logIn } from '../features/auth';
 
-type LogInNavigationType = StackNavigationProp<AppStackParamList, 'Login'>;
+import Colors from '../constants/colors';
+
 type LogInFormTypes = {
   email: string;
   password: string;
 };
 
 export const LoginFormScreen = () => {
+  const dispatch = useDispatch();
   const { t, i18n } = useTranslation('login');
   const {
     control,
@@ -34,11 +33,12 @@ export const LoginFormScreen = () => {
       password: '',
     },
   });
-  const navigation = useNavigation<LogInNavigationType>();
 
   /* form validation function */
   const onSubmit = (data: LogInFormTypes) => {
-    navigation.navigate('HomePage');
+    dispatch(
+      logIn({ name: data.email, password: data.password, isLogedIn: true }),
+    );
   };
 
   return (

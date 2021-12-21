@@ -22,7 +22,6 @@ export const SearchUsersList: FunctionComponent<SearchSUersProps> = ({
 }) => {
   const { data, error, isFetching, isSuccess } = useSearchUsersQuery(param);
   const navigation = useNavigation<HomePageNavigationType>();
-  console.log('render');
 
   return (
     <>
