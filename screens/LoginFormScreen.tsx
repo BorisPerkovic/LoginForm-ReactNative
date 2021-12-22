@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
-import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
-import { CustomMenu } from '../components/Menu/Menu';
+import { LogInFormMenu } from '../components/Menu/LoginFormMenu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { ErrorMessage } from '../components/ErrorMessage';
 import { LoginButton } from '../components/LoginForm/LoginButton';
@@ -22,7 +21,6 @@ type LogInFormTypes = {
 
 export const LoginFormScreen = () => {
   const dispatch = useDispatch();
-  const { t, i18n } = useTranslation('login');
   const {
     control,
     handleSubmit,
@@ -46,7 +44,7 @@ export const LoginFormScreen = () => {
       <CustomStatusBar />
 
       {/* Menu */}
-      <CustomMenu onPressDots={() => {}} />
+      <LogInFormMenu onPressDots={() => {}} />
 
       <Logo />
 
@@ -67,7 +65,7 @@ export const LoginFormScreen = () => {
           }}
           render={({ field: { onChange, value } }) => (
             <CustomInput
-              title={t('email')}
+              title="email"
               type="text"
               onChangeText={value => onChange(value)}
               value={value}
@@ -86,7 +84,7 @@ export const LoginFormScreen = () => {
           }}
           render={({ field: { onChange, value } }) => (
             <CustomInput
-              title={t('password')}
+              title="password"
               type="password"
               onChangeText={value => onChange(value)}
               value={value}
@@ -99,7 +97,7 @@ export const LoginFormScreen = () => {
 
       {/* Delete Grid */}
       <LoginButton
-        title={t('Login')}
+        title="Login"
         disabled={false}
         onPress={handleSubmit(onSubmit)}
       />

@@ -46,8 +46,7 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
         <Button
           title="logout"
           onPress={() => {
-            dispatch(logOut());
-            props.navigation.closeDrawer();
+            dispatch(logOut({ name: '', password: '', isLogedIn: false }));
           }}
         />
       </View>

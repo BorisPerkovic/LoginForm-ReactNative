@@ -9,7 +9,7 @@ export const LoginForm: FunctionComponent = ({ children }) => {
   return (
     <View style={styles.inputContainer}>
       {children}
-      <Text style={styles.text}>{t('forgot_password')}</Text>
+      <Text style={styles.text}>Forgot Password?</Text>
     </View>
   );
 };

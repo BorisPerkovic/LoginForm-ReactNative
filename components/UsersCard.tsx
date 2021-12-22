@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { View, Text, StyleSheet, Image, Button, StyleProp } from 'react-native';
+import { View, Text, StyleSheet, Image, Button } from 'react-native';
 
 import Colors from '../constants/colors';
 

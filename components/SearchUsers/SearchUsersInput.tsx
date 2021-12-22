@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput } from 'react-native';
 
 import Colors from '../../constants/colors';
 

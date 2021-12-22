@@ -1,20 +1,17 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { LogInFormNavigator } from './navigation/Stacks/LoginFormStack';
-import { useSelector, RootStateOrAny } from 'react-redux';
+import { RootStackScreen } from './navigation/RootStack';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import { DrawerNavigator } from './navigation/Drawer';
+LogBox.ignoreLogs(["EventEmitter.removeListener('"]);
 
 const App = () => {
-  const token = useSelector((state: RootStateOrAny) => state.token.value);
-
   return (
     <PaperProvider>
       <NavigationContainer>
-        {token.isLogedIn && <DrawerNavigator />}
-        {!token.isLogedIn && <LogInFormNavigator />}
+        <RootStackScreen />
       </NavigationContainer>
     </PaperProvider>
   );
