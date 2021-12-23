@@ -8,8 +8,8 @@ export const CreateAccount = () => {
   const { t } = useTranslation('login');
   return (
     <View>
-      <Text style={styles.text}>{t('dont_have_account')}</Text>
-      <Text style={styles.account}>{t('create_account')}</Text>
+      <Text style={styles.text}>Don't Have Account</Text>
+      <Text style={styles.account}>Create Account</Text>
     </View>
   );
 };
