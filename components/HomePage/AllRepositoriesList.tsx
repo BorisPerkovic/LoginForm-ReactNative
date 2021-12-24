@@ -16,6 +16,7 @@ type HomePageNavigationType = StackNavigationProp<
 export const AllRepositoriesList = () => {
   const { data, error, isLoading, isSuccess, isFetching } =
     useAllRepositoriesQuery();
+
   const navigation = useNavigation<HomePageNavigationType>();
 
   return (
@@ -27,20 +28,22 @@ export const AllRepositoriesList = () => {
       {isSuccess && !isFetching && (
         <FlatList
           data={data?.slice(0, 30)}
-          renderItem={itemData => (
-            <UsersCard
-              title="repositories"
-              name={itemData.item.name}
-              fullName={itemData.item.full_name}
-              imageUrl={itemData.item.owner.avatar_url}
-              viewRepositories={() => {
-                navigation.navigate('UsersRepos', {
-                  name: itemData.item.owner.login,
-                  avatatar_url: itemData.item.owner.avatar_url,
-                });
-              }}
-            />
-          )}
+          renderItem={itemData => {
+            return (
+              <UsersCard
+                title="repositories"
+                name={itemData.item.name}
+                fullName={itemData.item.fullName}
+                imageUrl={itemData.item.owner.avatarUrl}
+                viewRepositories={() => {
+                  navigation.navigate('UsersRepos', {
+                    name: itemData.item.owner.login,
+                    avatatar_url: itemData.item.owner.avatarUrl,
+                  });
+                }}
+              />
+            );
+          }}
           keyExtractor={item => item.id.toString()}
           maxToRenderPerBatch={30}
         />

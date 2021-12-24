@@ -1,5 +1,12 @@
 import React, { FunctionComponent } from 'react';
-import { SafeAreaView, View, Image, StyleSheet, Button } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 import { IconButton } from 'react-native-paper';
 import {
   DrawerItemList,
@@ -11,6 +18,7 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../../features/auth';
 
 import Colors from '../../constants/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 interface CustomDrawerProps {
   props: DrawerContentComponentProps<DrawerContentOptions>;
@@ -42,14 +50,18 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
       <DrawerContentScrollView>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <View>
-        <Button
-          title="logout"
-          onPress={() => {
-            dispatch(logOut({ name: '', password: '', isLogedIn: false }));
-          }}
+      <TouchableOpacity
+        style={styles.logout}
+        onPress={() => {
+          dispatch(logOut({ name: '', password: '', isLogedIn: false }));
+        }}>
+        <Ionicons
+          name="log-out-outline"
+          size={26}
+          color={Colors.primaryColor}
         />
-      </View>
+        <Text style={{ marginLeft: 25 }}>Log Out</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -71,5 +83,12 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 60,
+  },
+  logout: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingHorizontal: 25,
+    paddingVertical: 20,
   },
 });

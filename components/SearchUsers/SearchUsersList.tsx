@@ -33,19 +33,19 @@ export const SearchUsersList: FunctionComponent<SearchSUersProps> = ({
       )}
       {isSuccess &&
         !isFetching &&
-        (data?.items.length !== 0 ? (
+        (data?.length !== 0 ? (
           <FlatList
-            data={data?.items}
+            data={data}
             renderItem={itemData => (
               <UsersCard
                 title="repositories"
                 name={itemData.item.login}
                 fullName={itemData.item.login}
-                imageUrl={itemData.item.avatar_url}
+                imageUrl={itemData.item.avatarUrl}
                 viewRepositories={() => {
                   navigation.navigate('UsersRepos', {
                     name: itemData.item.login,
-                    avatatar_url: itemData.item.avatar_url,
+                    avatatar_url: itemData.item.avatarUrl,
                   });
                 }}
               />
