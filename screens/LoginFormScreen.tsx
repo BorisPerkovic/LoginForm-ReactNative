@@ -1,6 +1,13 @@
-import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import {
+  StyleSheet,
+  ScrollView,
+  ActivityIndicator,
+  Alert,
+  Text,
+} from 'react-native';
+import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
+import { fetchUser } from '../features/authenticationSlice';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 import { LogInFormMenu } from '../components/Menu/LoginFormMenu';
@@ -10,7 +17,6 @@ import { LoginButton } from '../components/LoginForm/LoginButton';
 import { CreateAccount } from '../components/LoginForm/CreateAccount';
 import { CustomInput } from '../components/LoginForm/CustomInput';
 import { useForm, Controller } from 'react-hook-form';
-import { logIn } from '../features/auth';
 
 import Colors from '../constants/colors';
 
@@ -21,6 +27,7 @@ type LogInFormTypes = {
 
 export const LoginFormScreen = () => {
   const dispatch = useDispatch();
+  const userStatus = useSelector((state: RootStateOrAny) => state.user);
   const {
     control,
     handleSubmit,
@@ -33,11 +40,20 @@ export const LoginFormScreen = () => {
   });
 
   /* form validation function */
-  const onSubmit = (data: LogInFormTypes) => {
-    dispatch(
-      logIn({ name: data.email, password: data.password, isLogedIn: true }),
-    );
+  const onSubmit = async (data: LogInFormTypes) => {
+    dispatch(fetchUser(data));
   };
+
+  useEffect(() => {
+    if (userStatus.loading === 'failed') {
+      if (userStatus.errorMessage === 'Request failed with status code 400') {
+        Alert.alert('Error!', 'Email or password are not correct!');
+      }
+      if (userStatus.errorMessage === 'Request failed with status code 404') {
+        Alert.alert('Error!', 'Something went wrong. Please, try again!');
+      }
+    }
+  }, [userStatus]);
 
   return (
     <ScrollView style={styles.formContainer}>
@@ -95,6 +111,9 @@ export const LoginFormScreen = () => {
         {errors.password && <ErrorMessage message={errors.password.message} />}
       </LoginForm>
 
+      {userStatus.loading === 'pending' && (
+        <ActivityIndicator size="large" color={Colors.secondaryColor} />
+      )}
       {/* Delete Grid */}
       <LoginButton
         title="Login"

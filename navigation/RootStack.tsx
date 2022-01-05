@@ -6,10 +6,13 @@ import { useSelector, RootStateOrAny } from 'react-redux';
 
 const RootStack = createStackNavigator();
 export const RootStackScreen = () => {
-  const token = useSelector((state: RootStateOrAny) => state.token.value);
+  const userIsAuthenticated = useSelector(
+    (state: RootStateOrAny) => state.user.isAuthenticated,
+  );
+
   return (
     <RootStack.Navigator headerMode="none">
-      {token.isLogedIn ? (
+      {userIsAuthenticated ? (
         <RootStack.Screen
           name="App"
           component={DrawerNavigator}

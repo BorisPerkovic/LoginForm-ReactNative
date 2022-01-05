@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { CustomMenu } from '../components/Menu/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
 import { AllRepositoriesList } from '../components/HomePage/AllRepositoriesList';
-import { logOut } from '../features/auth';
+import { logOut } from '../features/authenticationSlice';
 
 export const HomePageScreen = () => {
   const { t, i18n } = useTranslation('home');
@@ -21,8 +21,7 @@ export const HomePageScreen = () => {
       },
       {
         text: 'YES',
-        onPress: () =>
-          dispatch(logOut({ name: '', password: '', isLogedIn: false })),
+        onPress: () => dispatch(logOut()),
       },
     ]);
     return true;

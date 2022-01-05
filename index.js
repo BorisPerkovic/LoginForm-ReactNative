@@ -7,12 +7,12 @@ import App from './App';
 import { name as appName } from './app.json';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import tokenReducer from './features/auth';
+import usersReducer from './features/authenticationSlice';
 import { githubApi } from './services/githubApi';
 
 const store = configureStore({
   reducer: {
-    token: tokenReducer,
+    user: usersReducer,
     [githubApi.reducerPath]: githubApi.reducer,
   },
   middleware: getDefaultMiddleware =>

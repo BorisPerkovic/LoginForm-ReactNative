@@ -15,7 +15,7 @@ import {
   DrawerContentOptions,
 } from '@react-navigation/drawer';
 import { useDispatch } from 'react-redux';
-import { logOut } from '../../features/auth';
+import { logOut } from '../../features/authenticationSlice';
 
 import Colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -53,7 +53,7 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
       <TouchableOpacity
         style={styles.logout}
         onPress={() => {
-          dispatch(logOut({ name: '', password: '', isLogedIn: false }));
+          dispatch(logOut());
         }}>
         <Ionicons
           name="log-out-outline"
