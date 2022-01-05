@@ -8,18 +8,18 @@ import { name as appName } from './app.json';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import usersReducer from './features/authenticationSlice';
-import { githubApi } from './services/githubApi';
+import { reportsApi } from './services/reportsAPI';
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
     user: usersReducer,
-    [githubApi.reducerPath]: githubApi.reducer,
+    [reportsApi.reducerPath]: reportsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(githubApi.middleware),
+    }).concat(reportsApi.middleware),
 });
 
 const RNRedux = () => {

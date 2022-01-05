@@ -1,8 +1,10 @@
-export interface AllRepositories {
+export interface Candidates {
   id: number;
   name: string;
-  owner: { avatarUrl: string; login: string };
-  fullName: string;
+  birthday: string;
+  email: string;
+  education: string;
+  avatar: string;
 }
 
 export interface UsersRepositories {

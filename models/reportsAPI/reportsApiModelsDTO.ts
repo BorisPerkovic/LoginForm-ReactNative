@@ -1,8 +1,10 @@
-export interface AllRepositoriesDTO {
+export interface CandidatesDTO {
   id: number;
   name: string;
-  owner: { avatar_url: string; login: string };
-  full_name: string;
+  birthday: string;
+  email: string;
+  education: string;
+  avatar: string;
 }
 
 export interface UsersRepositoriesDTO {

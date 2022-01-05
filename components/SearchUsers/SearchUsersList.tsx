@@ -6,7 +6,7 @@ import { AppStackParamList } from '../../navigation/Stacks/AppStack';
 
 import Colors from '../../constants/colors';
 import { UsersCard } from '../UsersCard';
-import { useSearchUsersQuery } from '../../services/githubApi';
+import { useSearchUsersQuery } from '../../services/reportsAPI';
 
 type HomePageNavigationType = StackNavigationProp<
   AppStackParamList,

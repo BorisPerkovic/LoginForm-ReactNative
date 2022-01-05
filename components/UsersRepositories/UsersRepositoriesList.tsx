@@ -10,7 +10,7 @@ import {
 import { RouteProp, useRoute } from '@react-navigation/core';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
 import Colors from '../../constants/colors';
-import { useUsersRepositoriesQuery } from '../../services/githubApi';
+import { useUsersRepositoriesQuery } from '../../services/reportsAPI';
 import { UsersRepositoriesCard } from '../UsersRepositoriesCard';
 
 export const UsersRepositoriesList = () => {

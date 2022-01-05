@@ -3,7 +3,7 @@ import { Text, FlatList, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
-import { useAllRepositoriesQuery } from '../../services/githubApi';
+import { useCandidatesQuery } from '../../services/reportsAPI';
 
 import Colors from '../../constants/colors';
 import { UsersCard } from '../UsersCard';
@@ -15,7 +15,7 @@ type HomePageNavigationType = StackNavigationProp<
 
 export const AllRepositoriesList = () => {
   const { data, error, isLoading, isSuccess, isFetching } =
-    useAllRepositoriesQuery();
+    useCandidatesQuery();
 
   const navigation = useNavigation<HomePageNavigationType>();
 
@@ -33,12 +33,12 @@ export const AllRepositoriesList = () => {
               <UsersCard
                 title="repositories"
                 name={itemData.item.name}
-                fullName={itemData.item.fullName}
-                imageUrl={itemData.item.owner.avatarUrl}
+                email={itemData.item.email}
+                imageUrl={itemData.item.avatar}
                 viewRepositories={() => {
                   navigation.navigate('UsersRepos', {
-                    name: itemData.item.owner.login,
-                    avatatar_url: itemData.item.owner.avatarUrl,
+                    name: itemData.item.name,
+                    avatatar_url: itemData.item.avatar,
                   });
                 }}
               />

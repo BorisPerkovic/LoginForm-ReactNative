@@ -1,34 +1,41 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import config from '../config';
+import { store } from '..';
 import {
-  AllRepositories,
+  Candidates,
   UsersRepositories,
   User,
-} from '../models/githubApi/githubApiModels';
+} from '../models/reportsAPI/reportsApiModels';
 import {
-  AllRepositoriesDTO,
+  CandidatesDTO,
   UsersRepositoriesDTO,
   UserDTO,
-} from '../models/githubApi/githubApiModelsDTO';
+} from '../models/reportsAPI/reportsApiModelsDTO';
 
-export const githubApi = createApi({
-  reducerPath: 'githubApi',
+type RootState = ReturnType<typeof store.getState>;
+
+export const reportsApi = createApi({
+  reducerPath: 'reportsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: config.BASE_URL,
-    prepareHeaders: headers => {
-      headers.set('Authorization', `token${config.GIT_ACCESS_TOKEN}`);
+    baseUrl: 'http://10.0.2.2:3333',
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).user.entities.accessToken;
+      if (token) {
+        headers.set('Authorization', token);
+      }
       return headers;
     },
   }),
   endpoints: builder => ({
-    allRepositories: builder.query<AllRepositories[], void>({
-      query: () => '/repositories',
-      transformResponse: (response: AllRepositoriesDTO[]) => {
+    candidates: builder.query<Candidates[], void>({
+      query: () => '/api/candidates',
+      transformResponse: (response: CandidatesDTO[]) => {
         return response.map(data => ({
           id: data.id,
-          fullName: data.full_name,
           name: data.name,
-          owner: { avatarUrl: data.owner.avatar_url, login: data.owner.login },
+          birthday: data.birthday,
+          email: data.email,
+          education: data.education,
+          avatar: data.avatar,
         }));
       },
     }),
@@ -58,7 +65,7 @@ export const githubApi = createApi({
 });
 
 export const {
-  useAllRepositoriesQuery,
+  useCandidatesQuery,
   useUsersRepositoriesQuery,
   useSearchUsersQuery,
-} = githubApi;
+} = reportsApi;

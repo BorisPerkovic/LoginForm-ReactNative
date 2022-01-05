@@ -6,7 +6,7 @@ import Colors from '../constants/colors';
 interface CardProps {
   name: string;
   imageUrl: string;
-  fullName: string;
+  email: string;
   title: string;
   viewRepositories: () => void;
 }
@@ -14,7 +14,7 @@ interface CardProps {
 export const UsersCard: FunctionComponent<CardProps> = ({
   name,
   imageUrl,
-  fullName,
+  email,
   title,
   viewRepositories,
 }) => {
@@ -25,7 +25,7 @@ export const UsersCard: FunctionComponent<CardProps> = ({
       </View>
       <View style={styles.details}>
         <Text>{name}</Text>
-        <Text>{fullName}</Text>
+        <Text>{email}</Text>
       </View>
       <View style={styles.button}>
         <Button
