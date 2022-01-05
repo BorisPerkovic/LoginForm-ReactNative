@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CustomMenu } from '../components/Menu/Menu';
 import { CustomStatusBar } from '../components/CustomStatusBar';
-import { AllRepositoriesList } from '../components/HomePage/AllRepositoriesList';
+import { CandidatesList } from '../components/HomePage/CandidatesList';
 import { logOut } from '../features/authenticationSlice';
 
 export const HomePageScreen = () => {
@@ -39,7 +39,7 @@ export const HomePageScreen = () => {
       <CustomStatusBar />
       <CustomMenu onPressDots={() => {}} />
       <View style={styles.containerContent}>
-        <AllRepositoriesList />
+        <CandidatesList />
       </View>
     </View>
   );

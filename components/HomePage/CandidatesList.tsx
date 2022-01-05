@@ -13,7 +13,7 @@ type HomePageNavigationType = StackNavigationProp<
   'HomePage'
 >;
 
-export const AllRepositoriesList = () => {
+export const CandidatesList = () => {
   const { data, error, isLoading, isSuccess, isFetching } =
     useCandidatesQuery();
 
