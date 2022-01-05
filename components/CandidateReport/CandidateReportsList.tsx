@@ -10,13 +10,13 @@ import {
 import { RouteProp, useRoute } from '@react-navigation/core';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
 import Colors from '../../constants/colors';
-import { useUsersRepositoriesQuery } from '../../services/reportsAPI';
-import { UsersRepositoriesCard } from '../UsersRepositoriesCard';
+import { useCandidateReportsQuery } from '../../services/reportsAPI';
+import { CandidateReportsCard } from '../CandidatesReportsCard';
 
-export const UsersRepositoriesList = () => {
-  const { params } = useRoute<RouteProp<AppStackParamList, 'UsersRepos'>>();
-  const { data, error, isFetching, isSuccess } = useUsersRepositoriesQuery(
-    params.name,
+export const CandidateReportsList = () => {
+  const { params } = useRoute<RouteProp<AppStackParamList, 'CandReports'>>();
+  const { data, error, isFetching, isSuccess } = useCandidateReportsQuery(
+    params.candidateId,
   );
 
   return (
@@ -33,20 +33,12 @@ export const UsersRepositoriesList = () => {
         <FlatList
           data={data}
           renderItem={itemData => (
-            <UsersRepositoriesCard
-              repoName={itemData.item.name}
-              title="view details"
-              description={
-                itemData.item.description
-                  ? itemData.item.description
-                  : 'No description'
-              }
-              languages={
-                itemData.item.language
-                  ? itemData.item.language
-                  : 'No details about languages'
-              }
-              viewRepository={() => {}}
+            <CandidateReportsCard
+              companyName={itemData.item.companyName}
+              title="report details"
+              interviewDate={itemData.item.interviewDate}
+              status={itemData.item.status}
+              viewReport={() => {}}
             />
           )}
           keyExtractor={item => item.id.toString()}

@@ -4,30 +4,30 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import Colors from '../constants/colors';
 
 interface CardProps {
-  repoName: string;
+  companyName: string;
+  interviewDate: string;
+  status: string;
   title: string;
-  description: string;
-  languages: string;
-  viewRepository: () => void;
+  viewReport: () => void;
 }
 
-export const UsersRepositoriesCard: FunctionComponent<CardProps> = ({
-  repoName,
+export const CandidateReportsCard: FunctionComponent<CardProps> = ({
+  companyName,
+  interviewDate,
+  status,
   title,
-  description,
-  languages,
-  viewRepository,
+  viewReport,
 }) => {
   return (
     <View style={styles.containerCard}>
-      <Text style={styles.repoTitle}>{repoName}</Text>
-      <Text style={styles.details}>Description: {description}</Text>
-      <Text style={styles.details}>Languages: {languages}</Text>
+      <Text style={styles.repoTitle}>{companyName}</Text>
+      <Text style={styles.details}>Interview Date: {interviewDate}</Text>
+      <Text style={styles.details}>Status: {status}</Text>
       <View style={styles.button}>
         <Button
           title={title.toUpperCase()}
           color={Colors.primaryColor}
-          onPress={viewRepository}
+          onPress={viewReport}
         />
       </View>
     </View>

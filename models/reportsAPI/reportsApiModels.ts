@@ -7,12 +7,14 @@ export interface Candidates {
   avatar: string;
 }
 
-export interface UsersRepositories {
+export interface CandidatesReports {
   id: number;
-  name: string;
-  htmlUrl: string;
-  description: string;
-  language: string;
+  companyId: number;
+  companyName: string;
+  interviewDate: string;
+  phase: string;
+  status: string;
+  note: string;
 }
 
 export interface User {

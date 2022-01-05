@@ -2,12 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { store } from '..';
 import {
   Candidates,
-  UsersRepositories,
+  CandidatesReports,
   User,
 } from '../models/reportsAPI/reportsApiModels';
 import {
   CandidatesDTO,
-  UsersRepositoriesDTO,
+  CandidatesReportsDTO,
   UserDTO,
 } from '../models/reportsAPI/reportsApiModelsDTO';
 
@@ -39,15 +39,17 @@ export const reportsApi = createApi({
         }));
       },
     }),
-    usersRepositories: builder.query<UsersRepositories[], string>({
-      query: param => `/users/${param}/repos`,
-      transformResponse: (response: UsersRepositoriesDTO[]) => {
+    candidateReports: builder.query<CandidatesReports[], number>({
+      query: param => `api/reports?candidateId=${param}`,
+      transformResponse: (response: CandidatesReportsDTO[]) => {
         return response.map(data => ({
           id: data.id,
-          name: data.name,
-          htmlUrl: data.html_url,
-          description: data.description,
-          language: data.language,
+          companyId: data.companyId,
+          companyName: data.companyName,
+          interviewDate: data.interviewDate,
+          phase: data.phase,
+          status: data.status,
+          note: data.note,
         }));
       },
     }),
@@ -66,6 +68,6 @@ export const reportsApi = createApi({
 
 export const {
   useCandidatesQuery,
-  useUsersRepositoriesQuery,
+  useCandidateReportsQuery,
   useSearchUsersQuery,
 } = reportsApi;

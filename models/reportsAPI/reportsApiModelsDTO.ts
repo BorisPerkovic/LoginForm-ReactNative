@@ -7,12 +7,14 @@ export interface CandidatesDTO {
   avatar: string;
 }
 
-export interface UsersRepositoriesDTO {
+export interface CandidatesReportsDTO {
   id: number;
-  name: string;
-  html_url: string;
-  description: string;
-  language: string;
+  companyId: number;
+  companyName: string;
+  interviewDate: string;
+  phase: string;
+  status: string;
+  note: string;
 }
 
 export interface UserDTO {

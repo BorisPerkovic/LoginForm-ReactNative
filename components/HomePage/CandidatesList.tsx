@@ -31,12 +31,13 @@ export const CandidatesList = () => {
           renderItem={itemData => {
             return (
               <UsersCard
-                title="repositories"
+                title={`${itemData.item.name} reports`}
                 name={itemData.item.name}
                 email={itemData.item.email}
                 imageUrl={itemData.item.avatar}
                 viewRepositories={() => {
-                  navigation.navigate('UsersRepos', {
+                  navigation.navigate('CandReports', {
+                    candidateId: itemData.item.id,
                     name: itemData.item.name,
                     avatatar_url: itemData.item.avatar,
                   });
