@@ -1,33 +1,51 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 import Colors from '../constants/colors';
+import { ReportsModal } from './ReportsModal';
 
 interface CardProps {
+  candidateName: string;
   companyName: string;
   interviewDate: string;
   status: string;
   title: string;
-  viewReport: () => void;
+  phase: string;
+  notes: string;
 }
 
 export const CandidateReportsCard: FunctionComponent<CardProps> = ({
+  candidateName,
   companyName,
   interviewDate,
   status,
   title,
-  viewReport,
+  phase,
+  notes,
 }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <View style={styles.containerCard}>
+      <ReportsModal
+        candidateName={candidateName}
+        companyName={companyName}
+        interviewDate={interviewDate}
+        phase={phase}
+        status={status}
+        notes={notes}
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+      />
+
       <Text style={styles.repoTitle}>{companyName}</Text>
       <Text style={styles.details}>Interview Date: {interviewDate}</Text>
       <Text style={styles.details}>Status: {status}</Text>
-      <View style={styles.button}>
+      <View>
         <Button
           title={title.toUpperCase()}
           color={Colors.primaryColor}
-          onPress={viewReport}
+          onPress={() => setModalOpen(true)}
         />
       </View>
     </View>
@@ -54,5 +72,4 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 15,
   },
-  button: {},
 });

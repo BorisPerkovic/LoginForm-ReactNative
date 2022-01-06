@@ -12,6 +12,7 @@ import { AppStackParamList } from '../../navigation/Stacks/AppStack';
 import Colors from '../../constants/colors';
 import { useCandidateReportsQuery } from '../../services/reportsAPI';
 import { CandidateReportsCard } from '../CandidatesReportsCard';
+import { ReportsModal } from '../ReportsModal';
 
 export const CandidateReportsList = () => {
   const { params } = useRoute<RouteProp<AppStackParamList, 'CandReports'>>();
@@ -34,11 +35,13 @@ export const CandidateReportsList = () => {
           data={data}
           renderItem={itemData => (
             <CandidateReportsCard
+              candidateName={params.name}
               companyName={itemData.item.companyName}
               title="report details"
               interviewDate={itemData.item.interviewDate}
               status={itemData.item.status}
-              viewReport={() => {}}
+              phase={itemData.item.phase}
+              notes={itemData.item.note}
             />
           )}
           keyExtractor={item => item.id.toString()}
