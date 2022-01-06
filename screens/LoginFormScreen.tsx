@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  ActivityIndicator,
-  Alert,
-  Text,
-} from 'react-native';
+import { StyleSheet, ActivityIndicator, Alert } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
 import { fetchUser } from '../features/authenticationSlice';
 import { Logo } from '../components/LoginForm/Logo';
@@ -56,7 +51,10 @@ export const LoginFormScreen = () => {
   }, [userStatus]);
 
   return (
-    <ScrollView style={styles.formContainer}>
+    <KeyboardAwareScrollView
+      style={styles.formContainer}
+      enableAutomaticScroll={true}
+      enableOnAndroid={true}>
       <CustomStatusBar />
 
       {/* Menu */}
@@ -121,7 +119,7 @@ export const LoginFormScreen = () => {
         onPress={handleSubmit(onSubmit)}
       />
       <CreateAccount />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 /* Styles for log in Form */
