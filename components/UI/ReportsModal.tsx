@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { Modal, View, Text, ScrollView, StyleSheet } from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 interface ModalProps {
   candidateName: string;

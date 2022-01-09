@@ -3,12 +3,12 @@ import { store } from '..';
 import {
   Candidates,
   CandidatesReports,
-  User,
+  Reports,
 } from '../models/reportsAPI/reportsApiModels';
 import {
   CandidatesDTO,
   CandidatesReportsDTO,
-  UserDTO,
+  ReportsDTO,
 } from '../models/reportsAPI/reportsApiModelsDTO';
 
 type RootState = ReturnType<typeof store.getState>;
@@ -40,7 +40,7 @@ export const reportsApi = createApi({
       },
     }),
     candidateReports: builder.query<CandidatesReports[], number>({
-      query: param => `api/reports?candidateId=${param}`,
+      query: param => `/api/reports?candidateId=${param}`,
       transformResponse: (response: CandidatesReportsDTO[]) => {
         return response.map(data => ({
           id: data.id,
@@ -53,21 +53,24 @@ export const reportsApi = createApi({
         }));
       },
     }),
-    searchUsers: builder.query<User[], string>({
-      query: param => `/search/users?q=${param}`,
-      transformResponse: (response: { items: UserDTO[] }) => {
-        return response.items.map(data => ({
+    reports: builder.query<Reports[], void>({
+      query: () => '/api/reports',
+      transformResponse: (response: ReportsDTO[]) => {
+        return response.map(data => ({
           id: data.id,
-          login: data.login,
-          avatarUrl: data.avatar_url,
+          companyId: data.companyId,
+          companyName: data.companyName,
+          companyImage: data.company_img,
+          candidateName: data.candidateName,
+          interviewDate: data.interviewDate,
+          phase: data.phase,
+          status: data.status,
+          note: data.note,
         }));
       },
     }),
   }),
 });
 
-export const {
-  useCandidatesQuery,
-  useCandidateReportsQuery,
-  useSearchUsersQuery,
-} = reportsApi;
+export const { useCandidatesQuery, useCandidateReportsQuery, useReportsQuery } =
+  reportsApi;

@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 interface MessageProps {
   message?: string;

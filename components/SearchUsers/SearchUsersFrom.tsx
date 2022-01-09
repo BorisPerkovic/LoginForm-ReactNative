@@ -3,7 +3,7 @@ import { Button, StyleSheet, Text, View, TextInput } from 'react-native';
 import { useDebouncedCallback } from 'use-debounce';
 import { useForm, Controller } from 'react-hook-form';
 import { SearchUsersInput } from './SearchUsersInput';
-import { ErrorMessage } from '../ErrorMessage';
+import { ErrorMessage } from '../UI/ErrorMessage';
 import { SearchUsersList } from './SearchUsersList';
 
 interface InputType {

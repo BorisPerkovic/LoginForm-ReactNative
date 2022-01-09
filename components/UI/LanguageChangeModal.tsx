@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 interface LangugageModalProps {
   onLanguageChange: (isModalVidible: boolean) => void;

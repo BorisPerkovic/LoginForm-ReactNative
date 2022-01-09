@@ -5,7 +5,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
 
 import Colors from '../../constants/colors';
-import { UsersCard } from '../UsersCard';
+import { UsersCard } from '../UI/UsersCard';
 import { useSearchUsersQuery } from '../../services/reportsAPI';
 
 type HomePageNavigationType = StackNavigationProp<

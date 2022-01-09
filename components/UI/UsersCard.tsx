@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 interface CardProps {
   name: string;
@@ -40,7 +40,8 @@ export const UsersCard: FunctionComponent<CardProps> = ({
 
 const styles = StyleSheet.create({
   containerCard: {
-    width: '90%',
+    flex: 1,
+    width: '95%',
     justifyContent: 'center',
     alignSelf: 'center',
     padding: 10,

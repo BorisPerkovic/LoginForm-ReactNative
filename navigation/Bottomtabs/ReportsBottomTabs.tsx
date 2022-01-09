@@ -3,24 +3,25 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Mission } from '../../screens/MissonScreen';
 import { Portfolio } from '../../screens/PortfolioScreen';
-import { Company } from '../../screens/CompanyScreen';
+import { ReportsScreen } from '../../screens/ReportsScreen';
 import Colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 
-export type CompanyBottomTabsParamList = {
-  Company: undefined;
+export type ReportsBottomTabsParamList = {
+  Reports: undefined;
   Portfolio: undefined;
   Mission: undefined;
 };
 
 const CompanyBottomTabsNavigator =
-  createBottomTabNavigator<CompanyBottomTabsParamList>();
+  createBottomTabNavigator<ReportsBottomTabsParamList>();
 
 /* Company Bottom Tab Navigator */
-export const CompanyBottomTabNavigator = () => {
+export const ReportsBottomTabNavigator = () => {
   return (
     <CompanyBottomTabsNavigator.Navigator
-      initialRouteName="Company"
+      initialRouteName="Reports"
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: {
@@ -29,17 +30,11 @@ export const CompanyBottomTabNavigator = () => {
         tabBarActiveTintColor: Colors.primaryColor,
       }}>
       <CompanyBottomTabsNavigator.Screen
-        name="Company"
-        component={Company}
+        name="Reports"
+        component={ReportsScreen}
         options={{
           tabBarIcon: ({ color, size }) => {
-            return (
-              <Ionicons
-                name="information-circle-outline"
-                size={size}
-                color={color}
-              />
-            );
+            return <Octicons name="report" size={size} color={color} />;
           },
         }}
       />

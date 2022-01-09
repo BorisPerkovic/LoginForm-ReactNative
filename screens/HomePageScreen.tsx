@@ -4,7 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { CustomMenu } from '../components/Menu/Menu';
-import { CustomStatusBar } from '../components/CustomStatusBar';
+import { CustomStatusBar } from '../components/UI/CustomStatusBar';
 import { CandidatesList } from '../components/HomePage/CandidatesList';
 import { logOut } from '../features/authenticationSlice';
 
@@ -38,7 +38,7 @@ export const HomePageScreen = () => {
     <View style={styles.container}>
       <CustomStatusBar />
       <CustomMenu onPressDots={() => {}} />
-      <View style={styles.containerContent}>
+      <View style={styles.container}>
         <CandidatesList />
       </View>
     </View>
@@ -48,9 +48,5 @@ export const HomePageScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  containerContent: {
-    flex: 1,
-    paddingVertical: 15,
   },
 });

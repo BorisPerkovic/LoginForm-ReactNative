@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { CompanyBottomTabsParamList } from '../navigation/Bottomtabs/CompanyBottomTabs';
+import { ReportsBottomTabsParamList } from '../navigation/Bottomtabs/ReportsBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { CustomMenu } from '../components/Menu/Menu';
 
 type PortolioPageNavigationType = StackNavigationProp<
-  CompanyBottomTabsParamList,
+  ReportsBottomTabsParamList,
   'Portfolio'
 >;
 

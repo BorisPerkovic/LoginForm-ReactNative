@@ -2,8 +2,9 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { AppBottomTabNavigator } from './Bottomtabs/AppBottomTabs';
 import { AccountBottomTabNavigator } from './Bottomtabs/AccountBottomTabs';
-import { CompanyBottomTabNavigator } from './Bottomtabs/CompanyBottomTabs';
+import { ReportsBottomTabNavigator } from './Bottomtabs/ReportsBottomTabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Octicons from 'react-native-vector-icons/Octicons';
 import { Contact } from '../screens/ContactScreen';
 import { CustomDrawer } from './CustomDrawer/CustomDrawer';
 
@@ -36,17 +37,11 @@ export const DrawerNavigator = () => {
         }}
       />
       <DrawerStack.Screen
-        name="Company"
-        component={CompanyBottomTabNavigator}
+        name="Reports"
+        component={ReportsBottomTabNavigator}
         options={{
           drawerIcon: ({ color, size }) => {
-            return (
-              <Ionicons
-                name="information-circle-outline"
-                size={size}
-                color={color}
-              />
-            );
+            return <Octicons name="report" size={size} color={color} />;
           },
         }}
       />

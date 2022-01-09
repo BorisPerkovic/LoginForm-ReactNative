@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 import { ReportsModal } from './ReportsModal';
 
 interface CardProps {

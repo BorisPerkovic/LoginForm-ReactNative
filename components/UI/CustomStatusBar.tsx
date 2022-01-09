@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { StatusBar } from 'react-native';
-import Colors from '../constants/colors';
+import Colors from '../../constants/colors';
 
 interface DefaultStatuBarProps {
   color?: string;

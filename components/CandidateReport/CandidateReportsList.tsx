@@ -11,8 +11,7 @@ import { RouteProp, useRoute } from '@react-navigation/core';
 import { AppStackParamList } from '../../navigation/Stacks/AppStack';
 import Colors from '../../constants/colors';
 import { useCandidateReportsQuery } from '../../services/reportsAPI';
-import { CandidateReportsCard } from '../CandidatesReportsCard';
-import { ReportsModal } from '../ReportsModal';
+import { CandidateReportsCard } from '../UI/CandidatesReportsCard';
 
 export const CandidateReportsList = () => {
   const { params } = useRoute<RouteProp<AppStackParamList, 'CandReports'>>();

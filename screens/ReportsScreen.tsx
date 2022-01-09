@@ -1,23 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { CompanyBottomTabsParamList } from '../navigation/Bottomtabs/CompanyBottomTabs';
+import { ReportsBottomTabsParamList } from '../navigation/Bottomtabs/ReportsBottomTabs';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { CustomMenu } from '../components/Menu/Menu';
+import { ReportsList } from '../components/Reports/ReportsList';
 
 type CompanyPageNavigationType = StackNavigationProp<
-  CompanyBottomTabsParamList,
-  'Company'
+  ReportsBottomTabsParamList,
+  'Reports'
 >;
 
-export const Company = () => {
+export const ReportsScreen = () => {
   const navigation = useNavigation<CompanyPageNavigationType>();
   return (
     <View style={styles.container}>
       <CustomMenu onPressDots={() => {}} />
-      <View style={styles.container}>
-        <Text>This is Company Screen!</Text>
-      </View>
+      <ReportsList />
     </View>
   );
 };
@@ -25,7 +24,5 @@ export const Company = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

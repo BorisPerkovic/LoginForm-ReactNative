@@ -17,8 +17,14 @@ export interface CandidatesReportsDTO {
   note: string;
 }
 
-export interface UserDTO {
+export interface ReportsDTO {
   id: number;
-  login: string;
-  avatar_url: string;
+  companyId: number;
+  companyName: string;
+  company_img: string;
+  candidateName: string;
+  interviewDate: string;
+  phase: string;
+  status: string;
+  note: string;
 }

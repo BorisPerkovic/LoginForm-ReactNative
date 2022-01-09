@@ -17,8 +17,14 @@ export interface CandidatesReports {
   note: string;
 }
 
-export interface User {
+export interface Reports {
   id: number;
-  login: string;
-  avatarUrl: string;
+  companyId: number;
+  companyName: string;
+  companyImage: string;
+  candidateName: string;
+  interviewDate: string;
+  phase: string;
+  status: string;
+  note: string;
 }
