@@ -25,9 +25,25 @@ export const fetchUser = createAsyncThunk(
 
     return promise;
   },
+
+  /*  async (data: { email: string; password: string }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post('http://10.0.2.2:3333/login', {
+        email: data.email,
+        password: data.password,
+      });
+      console.log(response.data);
+
+      return response;
+    } catch (err) {
+      console.log(err.response.data);
+
+      return rejectWithValue(err.response.data);
+    }
+  }, */
 );
 
-export const usersSlice = createSlice({
+export const authenticationSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
@@ -39,22 +55,23 @@ export const usersSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(fetchUser.pending, state => {
-      state.loading = 'pending';
-    }),
-      builder.addCase(fetchUser.fulfilled, (state, action) => {
+    builder
+      .addCase(fetchUser.pending, state => {
+        state.loading = 'pending';
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.entities = action.payload.data;
         state.isAuthenticated = true;
         state.errorMessage = '';
-      }),
-      builder.addCase(fetchUser.rejected, (state, action) => {
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
         state.loading = 'failed';
         state.errorMessage = action.error.message;
       });
   },
 });
 
-export const { logOut } = usersSlice.actions;
+export const { logOut } = authenticationSlice.actions;
 
-export default usersSlice.reducer;
+export default authenticationSlice.reducer;

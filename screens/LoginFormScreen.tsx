@@ -35,7 +35,7 @@ export const LoginFormScreen = () => {
   });
 
   /* form validation function */
-  const onSubmit = async (data: LogInFormTypes) => {
+  const onSubmit = (data: LogInFormTypes) => {
     dispatch(fetchUser(data));
   };
 

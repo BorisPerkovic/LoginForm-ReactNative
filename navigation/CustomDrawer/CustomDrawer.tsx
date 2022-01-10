@@ -14,7 +14,7 @@ import {
   DrawerContentComponentProps,
   DrawerContentOptions,
 } from '@react-navigation/drawer';
-import { useDispatch } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../features/authenticationSlice';
 
 import Colors from '../../constants/colors';
@@ -28,6 +28,7 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
   props,
 }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootStateOrAny) => state.user.entities.user);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,10 +43,11 @@ export const CustomDrawer: FunctionComponent<CustomDrawerProps> = ({
       <View style={styles.containerContent}>
         <Image
           source={{
-            uri: 'https://randomuser.me/api/portraits/men/41.jpg',
+            uri: user.avatar,
           }}
           style={styles.image}
         />
+        <Text style={styles.welcomeMessage}>Welcome, {user.name}</Text>
       </View>
       <DrawerContentScrollView>
         <DrawerItemList {...props} />
@@ -83,6 +85,10 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     borderRadius: 60,
+  },
+  welcomeMessage: {
+    marginVertical: 10,
+    fontSize: 18,
   },
   logout: {
     flexDirection: 'row',
