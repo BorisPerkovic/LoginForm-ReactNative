@@ -5,7 +5,7 @@ import { AccountBottomTabNavigator } from './Bottomtabs/AccountBottomTabs';
 import { ReportsBottomTabNavigator } from './Bottomtabs/ReportsBottomTabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Octicons from 'react-native-vector-icons/Octicons';
-import { Contact } from '../screens/ContactScreen';
+import { AccountScreen } from '../screens/AccountScreen';
 import { CustomDrawer } from './CustomDrawer/CustomDrawer';
 
 const DrawerStack = createDrawerNavigator();
@@ -46,11 +46,11 @@ export const DrawerNavigator = () => {
         }}
       />
       <DrawerStack.Screen
-        name="Contact"
-        component={Contact}
+        name="Account"
+        component={AccountScreen}
         options={{
           drawerIcon: ({ color, size }) => {
-            return <Ionicons name="mail-outline" size={size} color={color} />;
+            return <Ionicons name="person-outline" size={size} color={color} />;
           },
         }}
       />
