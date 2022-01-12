@@ -15,8 +15,8 @@ const initialState: UserState = {
   isAuthenticated: false,
 };
 
-export const fetchUser = createAsyncThunk(
-  'user/fetchUser',
+export const logIn = createAsyncThunk(
+  'user/logIn',
   async (data: { email: string; password: string }) => {
     const promise = await axios.post('http://10.0.2.2:3333/login', {
       email: data.email,
@@ -56,16 +56,16 @@ export const authenticationSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchUser.pending, state => {
+      .addCase(logIn.pending, state => {
         state.loading = 'pending';
       })
-      .addCase(fetchUser.fulfilled, (state, action) => {
+      .addCase(logIn.fulfilled, (state, action) => {
         state.loading = 'succeeded';
         state.entities = action.payload.data;
         state.isAuthenticated = true;
         state.errorMessage = '';
       })
-      .addCase(fetchUser.rejected, (state, action) => {
+      .addCase(logIn.rejected, (state, action) => {
         state.loading = 'failed';
         state.errorMessage = action.error.message;
       });

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { StyleSheet, ActivityIndicator, Alert } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector, RootStateOrAny } from 'react-redux';
-import { fetchUser } from '../features/authenticationSlice';
+import { logIn } from '../features/logInSlice';
 import { Logo } from '../components/LoginForm/Logo';
 import { LoginForm } from '../components/LoginForm/LoginForm';
 import { LogInFormMenu } from '../components/Menu/LoginFormMenu';
@@ -36,7 +36,7 @@ export const LoginFormScreen = () => {
 
   /* form validation function */
   const onSubmit = (data: LogInFormTypes) => {
-    dispatch(fetchUser(data));
+    dispatch(logIn(data));
   };
 
   useEffect(() => {

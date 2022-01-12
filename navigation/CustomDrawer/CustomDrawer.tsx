@@ -15,7 +15,7 @@ import {
   DrawerContentOptions,
 } from '@react-navigation/drawer';
 import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
-import { logOut } from '../../features/authenticationSlice';
+import { logOut } from '../../features/logInSlice';
 
 import Colors from '../../constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';

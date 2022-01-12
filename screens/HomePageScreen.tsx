@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { CustomMenu } from '../components/Menu/Menu';
 import { CustomStatusBar } from '../components/UI/CustomStatusBar';
 import { CandidatesList } from '../components/HomePage/CandidatesList';
-import { logOut } from '../features/authenticationSlice';
+import { logOut } from '../features/logInSlice';
 
 export const HomePageScreen = () => {
   const { t, i18n } = useTranslation('home');
