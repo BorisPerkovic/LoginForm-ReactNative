@@ -8,11 +8,13 @@ import { name as appName } from './app.json';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import usersReducer from './features/logInSlice';
+import reportsReducer from './features/createReportSlice';
 import { reportsApi } from './services/reportsAPI';
 
 export const store = configureStore({
   reducer: {
     user: usersReducer,
+    reports: reportsReducer,
     [reportsApi.reducerPath]: reportsApi.reducer,
   },
   middleware: getDefaultMiddleware =>
