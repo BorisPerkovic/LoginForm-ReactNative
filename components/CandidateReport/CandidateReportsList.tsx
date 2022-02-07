@@ -27,6 +27,7 @@ export const CandidateReportsList = () => {
         </View>
       )}
       {error && (
+        // eslint-disable-next-line react-native/no-inline-styles
         <Text style={{ textAlign: 'center' }}>Something went wrong!</Text>
       )}
       {isSuccess && !isFetching && (

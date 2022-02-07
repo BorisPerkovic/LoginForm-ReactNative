@@ -1,6 +1,6 @@
 import Colors from './colors';
 
-export const labels = ['Candidate', 'Company', 'Form'];
+export const labels = ['Candidate', 'Company', 'Form', 'Save'];
 export const customStyles = {
   stepIndicatorSize: 50,
   currentStepIndicatorSize: 60,
@@ -15,12 +15,12 @@ export const customStyles = {
   stepIndicatorFinishedColor: Colors.primaryColor,
   stepIndicatorUnFinishedColor: '#ffffff',
   stepIndicatorCurrentColor: '#ffffff',
-  stepIndicatorLabelFontSize: 17,
-  currentStepIndicatorLabelFontSize: 20,
+  stepIndicatorLabelFontSize: 16,
+  currentStepIndicatorLabelFontSize: 19,
   stepIndicatorLabelCurrentColor: Colors.primaryColor,
   stepIndicatorLabelFinishedColor: '#ffffff',
   stepIndicatorLabelUnFinishedColor: '#aaaaaa',
   labelColor: '#999999',
-  labelSize: 17,
+  labelSize: 16,
   currentStepLabelColor: Colors.primaryColor,
 };

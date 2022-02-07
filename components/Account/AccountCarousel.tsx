@@ -3,7 +3,6 @@ import {
   FlatList,
   Image,
   StyleSheet,
-  Text,
   useWindowDimensions,
   View,
 } from 'react-native';
@@ -51,12 +50,14 @@ export const AccountCarousel: FunctionComponent<Props> = ({ technologies }) => {
           <View
             style={[
               styles.dot,
+              // eslint-disable-next-line react-native/no-inline-styles
               {
                 backgroundColor:
                   index === activeIndex ? Colors.primaryColor : 'white',
               },
             ]}
-            key={index}></View>
+            key={index}
+          />
         ))}
       </View>
     </View>

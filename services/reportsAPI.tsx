@@ -9,6 +9,7 @@ import {
   CandidatesDTO,
   CandidatesReportsDTO,
   ReportsDTO,
+  CreateReportDTO,
 } from '../models/reportsAPI/reportsApiModelsDTO';
 
 type RootState = ReturnType<typeof store.getState>;
@@ -20,11 +21,12 @@ export const reportsApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).user.entities.accessToken;
       if (token) {
-        headers.set('Authorization', token);
+        headers.set('Authorization', `Bearer ${token}`);
       }
       return headers;
     },
   }),
+  tagTypes: ['Reports'],
   endpoints: builder => ({
     candidates: builder.query<Candidates[], void>({
       query: () => '/api/candidates',
@@ -41,6 +43,7 @@ export const reportsApi = createApi({
     }),
     candidateReports: builder.query<CandidatesReports[], number>({
       query: param => `/api/reports?candidateId=${param}`,
+      providesTags: ['Reports'],
       transformResponse: (response: CandidatesReportsDTO[]) => {
         return response.map(data => ({
           id: data.id,
@@ -55,6 +58,7 @@ export const reportsApi = createApi({
     }),
     reports: builder.query<Reports[], void>({
       query: () => '/api/reports',
+      providesTags: ['Reports'],
       transformResponse: (response: ReportsDTO[]) => {
         return response.map(data => ({
           id: data.id,
@@ -69,8 +73,20 @@ export const reportsApi = createApi({
         }));
       },
     }),
+    createReport: builder.mutation<void, CreateReportDTO>({
+      query: report => ({
+        url: '/api/reports',
+        method: 'POST',
+        body: report,
+      }),
+      invalidatesTags: ['Reports'],
+    }),
   }),
 });
 
-export const { useCandidatesQuery, useCandidateReportsQuery, useReportsQuery } =
-  reportsApi;
+export const {
+  useCandidatesQuery,
+  useCandidateReportsQuery,
+  useReportsQuery,
+  useCreateReportMutation,
+} = reportsApi;

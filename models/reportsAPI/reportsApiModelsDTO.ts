@@ -28,3 +28,15 @@ export interface ReportsDTO {
   status: string;
   note: string;
 }
+
+export interface CreateReportDTO {
+  companyId: number;
+  companyName: string;
+  companyID: number;
+  company_img: string;
+  candidateName: string;
+  interviewDate: string;
+  phase: string;
+  status: string;
+  note: string;
+}
